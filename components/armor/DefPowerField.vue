@@ -6,15 +6,16 @@ const itemInfo = useInsertItemInfo();
 const hiddenForm = ref(true);
 
 // 表示中のときは必須入力チェック
-const required = (v: string) => (hiddenForm.value ? true : !!v) || "必ず入力してください";
+const required = (v: string) =>
+  (hiddenForm.value ? true : !!v) || "必ず入力してください";
 
 // カテゴリフィールドの変化を監視する
 watch(
   () => itemInfo.value.category,
   (newVal) => {
     // カテゴリーが「武器」以外のときは表示しない
-    hiddenForm.value = newVal !== "武器";
-  },
+    hiddenForm.value = newVal !== "防具";
+  }
 );
 </script>
 
@@ -22,25 +23,25 @@ watch(
   <v-row v-if="!hiddenForm">
     <v-col>
       <v-text-field
-        v-model="itemInfo.atkPowerMin"
+        v-model="itemInfo.defPowerMin"
         class="mt-4"
-        label="最小攻撃力"
+        label="最小防御力"
         type="number"
         variant="outlined"
         density="comfortable"
         :rules="[required]"
-      ></v-text-field>
+      />
     </v-col>
     <v-col>
       <v-text-field
-        v-model="itemInfo.atkPowerMax"
+        v-model="itemInfo.defPowerMax"
         class="mt-4"
-        label="最大攻撃力"
+        label="最大防御力"
         type="number"
         variant="outlined"
         density="comfortable"
         :rules="[required]"
-      ></v-text-field>
+      />
     </v-col>
   </v-row>
 </template>

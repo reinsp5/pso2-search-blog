@@ -35,7 +35,7 @@ const insertItem = async () => {
 <template>
   <v-btn
     block
-    class="text-none mb-2"
+    class="text-none mt-8"
     color="indigo"
     size="x-large"
     variant="flat"

@@ -24,6 +24,12 @@ export default defineNuxtConfig({
     },
   },
   css: ["@/assets/css/main.scss"],
+  components: [
+    {
+      path: "@/components",
+      pathPrefix: false,
+    }
+  ],
   app: {
     head: {
       title: "PSO2アイテムデータベース",

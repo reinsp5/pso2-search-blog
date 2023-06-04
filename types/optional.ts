@@ -40,7 +40,7 @@ export interface Attribute {
   panickResist?: number;
   poisonResist?: number;
   painResist?: number;
-  envAdaption?: number;
+  envResist?: number;
   specialAbilities?: string[];
   potentials?: string[];
 }

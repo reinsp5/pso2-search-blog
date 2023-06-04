@@ -25,6 +25,7 @@ watch(
     <v-col>
       <v-switch
         v-model="itemInfo.colorVariant"
+        color="success"
         :label="`カラー変更: ${itemInfo.colorVariant ? '可能' : '不可'}`"
         hide-details
         inset
