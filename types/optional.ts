@@ -41,6 +41,6 @@ export interface Attribute {
   poisonResist?: number;
   painResist?: number;
   envAdaption?: number;
-  specialAbilities?: SpecialAbility[];
-  potentials?: Potential[];
+  specialAbilities?: string[];
+  potentials?: string[];
 }
