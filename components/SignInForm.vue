@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 const { account } = useAppwrite();
 
-// Discordで登録
-const signUpAsDiscord = async () => {
+// Discordでログイン
+const signInAsDiscord = async () => {
   try {
     await account.createOAuth2Session("discord", "http://localhost:3000");
   } catch (e) {
@@ -10,51 +10,32 @@ const signUpAsDiscord = async () => {
   }
 };
 
-// Googleで登録
-const signUpAsGoogle = async () => {
+// Googleでログイン
+const signInAsGoogle = async () => {
   try {
     await account.createOAuth2Session("google", "http://localhost:3000");
   } catch (e) {
     console.error(e);
   }
 };
+
 </script>
 
 <template>
   <v-card>
-    <v-card-title class="text-center mb-4">登録</v-card-title>
+    <v-card-title>ログイン</v-card-title>
     <v-row class="mx-4">
       <v-col>
         <v-form>
-          <v-text-field
-            type="email"
-            label="メールアドレス"
-            variant="outlined"
-            density="comfortable"
-          />
-          <v-text-field
-            type="password"
-            label="パスワード"
-            variant="outlined"
-            density="comfortable"
-          />
-          <v-btn
-            class="mb-4"
-            color="blue-darken-4"
-            size="large"
-            type="submit"
-            variant="elevated"
-            block
-          >
-            登録する
-          </v-btn>
+          <v-text-field></v-text-field>
         </v-form>
       </v-col>
     </v-row>
     <v-divider />
-    <v-card-title class="text-center">OAuth登録</v-card-title>
+    <v-card-title>OAuthログイン</v-card-title>
     <v-row class="mx-4 mb-2">
       <v-col>
+        
         <!-- Discord -->
         <v-btn
           block
@@ -62,10 +43,10 @@ const signUpAsGoogle = async () => {
           color="indigo"
           size="x-large"
           variant="flat"
-          @click="signUpAsDiscord"
+          @click="signInAsDiscord"
         >
           <Icon class="mx-2" name="ic:baseline-discord" size="24" />
-          DISCORDで登録
+          DISCORDでログイン
         </v-btn>
 
         <!-- Google -->
@@ -74,10 +55,10 @@ const signUpAsGoogle = async () => {
           class="text-none mb-2"
           size="x-large"
           variant="outlined"
-          @click="signUpAsGoogle"
+          @click="signInAsGoogle"
         >
           <Icon class="mx-2" name="logos:google-icon" size="24" />
-          GOOGLEで登録
+          GOOGLEでログイン
         </v-btn>
       </v-col>
     </v-row>

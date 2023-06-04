@@ -7,6 +7,7 @@ const { account } = useAppwrite();
 const signOut = async () => {
   try {
     await account.deleteSession("current");
+    return await navigateTo("/");
   } catch (e) {
     console.error(e);
   }
