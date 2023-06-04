@@ -17,8 +17,8 @@ export const useInsertItemInfo = () => {
       tags: [],
       createUser: "",
       updateUser: "",
-      createdAt: new Date().toLocaleDateString() + " " + new Date().toLocaleTimeString(),
-      updatedAt: new Date().toLocaleDateString() + " " + new Date().toLocaleTimeString(),
+      createdAt: "",
+      updatedAt: "",
     };
   });
 };
