@@ -22,7 +22,7 @@ watch(
   <v-row v-if="!hiddenForm">
     <v-col>
       <v-text-field
-        v-model="itemInfo.atkPowerMin"
+        v-model="itemInfo.atk_power_min"
         class="mt-4"
         label="最小攻撃力"
         type="number"
@@ -33,7 +33,7 @@ watch(
     </v-col>
     <v-col>
       <v-text-field
-        v-model="itemInfo.atkPowerMax"
+        v-model="itemInfo.atk_power_max"
         class="mt-4"
         label="最大攻撃力"
         type="number"

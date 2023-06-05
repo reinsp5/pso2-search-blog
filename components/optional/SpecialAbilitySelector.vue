@@ -17,12 +17,11 @@ const items = [
   "セズン・セクンダアニバフィーヴ",
 ];
 
-const potentials = ref<string[]>([]);
+const special_abilities = ref<string[]>([]);
 watch(
-  () => potentials.value,
+  () => special_abilities.value,
   (newVal) => {
-    itemInfo.value.attribute = itemInfo.value.attribute || {};
-    itemInfo.value.attribute.specialAbilities = newVal;
+    itemInfo.value.special_abilities = newVal;
     console.log(itemInfo.value);
   }
 );
@@ -40,7 +39,7 @@ watch(
 <template>
   <v-select
     v-if="!hiddenForm"
-    v-model="potentials"
+    v-model="special_abilities"
     class="mt-4"
     label="特殊能力"
     :items="items"

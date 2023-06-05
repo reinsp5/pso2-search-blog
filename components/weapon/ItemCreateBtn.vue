@@ -1,34 +1,52 @@
 <script lang="ts" setup>
+import { getAuth } from "firebase/auth";
+import {
+  collection,
+  addDoc,
+  getFirestore,
+  Timestamp,
+  getDocs,
+  query,
+  where,
+} from "firebase/firestore";
 import { v4 as uuidv4 } from "uuid";
 // 入力情報の共有State
 const itemInfo = useInsertItemInfo();
 
-const { database, account } = useAppwrite();
-
 // 登録する
 const insertItem = async () => {
-  const user = await account.get();
-  itemInfo.value.createUser = user.name;
-  itemInfo.value.updateUser = user.name;
-  itemInfo.value.createdAt = `${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}`;
-  itemInfo.value.updatedAt = `${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}`;
+  const store = getFirestore();
 
-  let insertData = {
-    ...itemInfo.value,
-    // JSON文字列に変換
-    attribute: JSON.stringify(itemInfo.value.attribute),
-    requirement: JSON.stringify(itemInfo.value.requirement),
-  }
-  const insertDataStr = JSON.stringify(insertData);
-  console.log(insertDataStr);
-
-  const response = await database.createDocument(
-    "647af1ca33b3c12a6cc7",
-    "647c5b12d5c5cb9b7c27",
-    uuidv4(),
-    insertDataStr
+  // 既存のデータがあるか確認
+  const querySnapshot = await getDocs(
+    query(
+      collection(store, "items"),
+      where("name", "==", itemInfo.value.name)
+    )
   );
-  console.log(response);
+  if (!querySnapshot.empty) {
+    alert("既に登録されている武器です。");
+    return;
+  }
+
+  const user = await getAuth().currentUser;
+  console.log(itemInfo.value);
+  const docRef = await addDoc(collection(store, "items"), {
+    ...itemInfo.value,
+    id: uuidv4(),
+    requirement: {
+      ...itemInfo.value.requirement
+    },
+    attribute: {
+      ...itemInfo.value.attribute
+    },
+    create_user: user?.displayName || user?.email,
+    update_user: user?.displayName,
+    created_at: Timestamp.now(),
+    updated_at: Timestamp.now(),
+  });
+
+  console.log(docRef);
 };
 </script>
 

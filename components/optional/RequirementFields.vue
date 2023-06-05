@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { Requirement } from "@/types/optional";
 // 入力情報の共有State
 const itemInfo = useInsertItemInfo();
 
@@ -19,8 +18,7 @@ const minLevel = ref(0);
 watch(
   () => minLevel.value,
   (newVal) => {
-    itemInfo.value.requirement = itemInfo.value.requirement || <Requirement>{};
-    itemInfo.value.requirement.minLevel = newVal;
+    itemInfo.value.requirement.min_level = newVal;
   }
 );
 </script>

@@ -5,10 +5,6 @@ const itemInfo = useInsertItemInfo();
 // フォームの表示・非表示
 const hiddenForm = ref(true);
 
-// 表示中のときは必須入力チェック
-const required = (v: string) =>
-  (hiddenForm.value ? true : !!v) || "必ず入力してください";
-
 // カテゴリフィールドの変化を監視する
 watch(
   () => itemInfo.value.category,
@@ -24,9 +20,9 @@ watch(
   <v-row v-if="!hiddenForm">
     <v-col>
       <v-switch
-        v-model="itemInfo.colorVariant"
+        v-model="itemInfo.color_variant"
         color="success"
-        :label="`カラー変更: ${itemInfo.colorVariant ? '可能' : '不可'}`"
+        :label="`カラー変更: ${itemInfo.color_variant ? '可能' : '不可'}`"
         hide-details
         inset
       />

@@ -19,7 +19,9 @@
       ]
     }
   ],
-  "extensions": {},
+  "extensions": {
+    "firestore-meilisearch": "meilisearch/firestore-meilisearch@0.1.12"
+  },
   "emulators": {
     "auth": {
       "port": 9099

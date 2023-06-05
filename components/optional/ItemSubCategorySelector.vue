@@ -87,7 +87,7 @@ const consumableItems = [
 <template>
   <v-select
     v-if="!hiddenForm"
-    v-model="itemInfo.subCategory"
+    v-model="itemInfo.sub_category"
     class="mt-4"
     label="サブカテゴリー"
     :items="items"

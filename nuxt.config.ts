@@ -2,7 +2,7 @@ import vuetify from "vite-plugin-vuetify";
 
 export default defineNuxtConfig({
   ssr: false,
-  modules: ["nuxt-icon","nuxt-appwrite"],
+  modules: ["nuxt-icon", "nuxt-appwrite"],
   typescript: {
     strict: true,
     typeCheck: true,
@@ -28,8 +28,19 @@ export default defineNuxtConfig({
     {
       path: "@/components",
       pathPrefix: false,
-    }
+    },
   ],
+  runtimeConfig: {
+    public: {
+      firebaseApiKey: "",
+      firebaseAuthDomain: "",
+      firebaseProjectId: "",
+      firebaseStorageBucket: "",
+      firebaseMessagingSenderId: "",
+      firebaseAppId: "",
+      firebaseMeasurementId: "",
+    },
+  },
   app: {
     head: {
       title: "PSO2アイテムデータベース",

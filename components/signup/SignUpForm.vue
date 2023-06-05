@@ -18,6 +18,16 @@ const signUpAsGoogle = async () => {
     console.error(e);
   }
 };
+
+// Twitterで登録
+const signUpAsTwitter = async () => {
+  const { signInTwitter } = useAuth();
+  try {
+    await signInTwitter();
+  } catch (e) {
+    console.error(e);
+  }
+};
 </script>
 
 <template>
@@ -55,6 +65,19 @@ const signUpAsGoogle = async () => {
     <v-card-title class="text-center">OAuth登録</v-card-title>
     <v-row class="mx-4 mb-2">
       <v-col>
+        <!-- Twitter -->
+        <v-btn
+          block
+          class="text-none mb-2"
+          color="blue"
+          size="x-large"
+          variant="flat"
+          @click="signUpAsTwitter"
+        >
+          <Icon class="mx-2" name="mdi:twitter" size="24" />
+          Twitterで登録
+        </v-btn>
+
         <!-- Discord -->
         <v-btn
           block

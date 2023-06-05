@@ -3,12 +3,12 @@
 const itemInfo = useInsertItemInfo();
 
 // 入手場所
-const availableAt = ref("");
+const available_at = ref("");
 watch(
-  availableAt,
+  available_at,
   (newVal) => {
-    itemInfo.value.availableAt = newVal.split("\n");
-    console.log(itemInfo.value.availableAt);
+    itemInfo.value.available_at = newVal.split("\n");
+    console.log(itemInfo.value.available_at);
   },
   { immediate: true }
 );
@@ -16,7 +16,7 @@ watch(
 
 <template>
   <v-textarea
-          v-model="availableAt"
+          v-model="available_at"
           label="入手方法"
           variant="outlined"
           placeholder="入手方法は、改行単位で複数登録できます。"

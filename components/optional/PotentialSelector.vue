@@ -58,8 +58,7 @@ const potentials = ref<string[]>([]);
 watch(
   () => potentials.value,
   (newVal) => {
-    itemInfo.value.attribute = itemInfo.value.attribute || {};
-    itemInfo.value.attribute.potentials = newVal;
+    itemInfo.value.potentials = newVal;
     console.log(itemInfo.value);
   }
 );

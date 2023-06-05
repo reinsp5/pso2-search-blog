@@ -44,7 +44,8 @@ const required = (v: string) =>
 <template>
   <v-select
     v-if="!hiddenForm"
-    v-model="itemInfo.weaponType"
+    v-model="itemInfo.weapon_type"
+    class="mt-4"
     label="武器種"
     :items="items"
     variant="outlined"

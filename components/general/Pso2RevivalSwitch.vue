@@ -5,9 +5,9 @@ const itemInfo = useInsertItemInfo();
 
 <template>
   <v-switch
-    v-model="itemInfo.pso2Revival"
+    v-model="itemInfo.pso2_revival"
     color="success"
-    :label="`PSO2リバイバル: ${itemInfo.pso2Revival ? '済' : '未済'}`"
+    :label="`PSO2リバイバル: ${itemInfo.pso2_revival ? '済' : '未済'}`"
     hide-details
     inset
   />

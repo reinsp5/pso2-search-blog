@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { Attribute } from "@/types/optional";
+import { Attribute } from "@/types/item";
 // 入力情報の共有State
 const itemInfo = useInsertItemInfo();
 
@@ -20,7 +20,7 @@ watch(
 );
 
 // 属性フィールドの変化を監視する
-const attributes = reactive<Attribute>({});
+const attributes = reactive<Attribute>(new Attribute());
 watch(
   () => ({ ...attributes }),
   (newVal) => {
@@ -39,7 +39,7 @@ watch(
     <v-row>
       <v-col>
         <v-text-field
-          v-model="attributes.sAtkUp"
+          v-model="attributes.s_atk_up"
           type="number"
           label="打撃上昇"
           variant="outlined"
@@ -49,7 +49,7 @@ watch(
       </v-col>
       <v-col>
         <v-text-field
-          v-model="attributes.rAtkUp"
+          v-model="attributes.r_atk_up"
           type="number"
           label="射撃上昇"
           variant="outlined"
@@ -59,7 +59,7 @@ watch(
       </v-col>
       <v-col>
         <v-text-field
-          v-model="attributes.tAtkUp"
+          v-model="attributes.t_atk_up"
           type="number"
           label="法撃上昇"
           variant="outlined"
@@ -73,7 +73,7 @@ watch(
     <v-row>
       <v-col>
         <v-text-field
-          v-model="attributes.hpUp"
+          v-model="attributes.hp_up"
           type="number"
           label="ＨＰ上昇"
           variant="outlined"
@@ -83,7 +83,7 @@ watch(
       </v-col>
       <v-col>
         <v-text-field
-          v-model="attributes.ppUp"
+          v-model="attributes.pp_up"
           type="number"
           label="ＰＰ上昇"
           variant="outlined"
@@ -101,7 +101,7 @@ watch(
     <v-row>
       <v-col>
         <v-text-field
-          v-model="attributes.damageResist"
+          v-model="attributes.damage_resist"
           type="number"
           label="ダメージ耐性"
           variant="outlined"
@@ -111,7 +111,7 @@ watch(
       </v-col>
       <v-col>
         <v-text-field
-          v-model="attributes.burnResist"
+          v-model="attributes.burn_resist"
           type="number"
           label="炎耐性"
           variant="outlined"
@@ -121,7 +121,7 @@ watch(
       </v-col>
       <v-col>
         <v-text-field
-          v-model="attributes.freezeResist"
+          v-model="attributes.freeze_resist"
           type="number"
           label="氷耐性"
           variant="outlined"
@@ -135,7 +135,7 @@ watch(
     <v-row>
       <v-col>
         <v-text-field
-          v-model="attributes.shockResist"
+          v-model="attributes.shock_resist"
           type="number"
           label="雷耐性"
           variant="outlined"
@@ -145,7 +145,7 @@ watch(
       </v-col>
       <v-col>
         <v-text-field
-          v-model="attributes.mirageResist"
+          v-model="attributes.mirage_resist"
           type="number"
           label="風耐性"
           variant="outlined"
@@ -155,7 +155,7 @@ watch(
       </v-col>
       <v-col>
         <v-text-field
-          v-model="attributes.panickResist"
+          v-model="attributes.panick_resist"
           type="number"
           label="光耐性"
           variant="outlined"
@@ -169,7 +169,7 @@ watch(
     <v-row>
       <v-col>
         <v-text-field
-          v-model="attributes.poisonResist"
+          v-model="attributes.poison_resist"
           type="number"
           label="闇耐性"
           variant="outlined"
@@ -179,7 +179,7 @@ watch(
       </v-col>
       <v-col>
         <v-text-field
-          v-model="attributes.painResist"
+          v-model="attributes.pain_resist"
           type="number"
           label="ペイン耐性"
           variant="outlined"
@@ -189,7 +189,7 @@ watch(
       </v-col>
       <v-col>
         <v-text-field
-          v-model="attributes.envResist"
+          v-model="attributes.env_resist"
           type="number"
           label="環境耐性"
           variant="outlined"
