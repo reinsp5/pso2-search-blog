@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { mdiImage } from "@mdi/js";
+import { fabric } from "fabric";
 
 const required = (v: File) => !!v || "アイテム画像は必須です";
 const limitSize = (v: any) => {
@@ -16,7 +17,39 @@ const preview = () => {
     previewUrl.value = "";
     return;
   }
-  previewUrl.value = URL.createObjectURL(images.value[0]);
+  const reader = new FileReader();
+  reader.onload = function (event) {
+    const imageElement = new Image();
+    imageElement.onload = function () {
+      const canvas = new fabric.Canvas(document.createElement("canvas"), {
+        width: imageElement.width,
+        height: imageElement.height,
+      });
+
+      const imageInstance = new fabric.Image(imageElement, {
+        left: 0,
+        top: 0,
+      });
+
+      canvas.add(imageInstance);
+
+      const text = new fabric.Text("© SEGA", {
+        left: 10,
+        top: 10,
+        fontSize: 25,
+        borderColor: "#FFFFFF",
+      });
+
+      canvas.add(text);
+      canvas.renderAll();
+
+      const dataURL = canvas.toDataURL({ format: "png" });
+
+      previewUrl.value = dataURL;
+    };
+    imageElement.src = event.target?.result as string;
+  };
+  reader.readAsDataURL(images.value[0]);
 };
 </script>
 
@@ -38,6 +71,7 @@ const preview = () => {
     :src="previewUrl"
     max-width="100%"
     :aspect-ratio="16 / 9"
+    cover
   />
   <v-sheet
     v-if="!images.length"
