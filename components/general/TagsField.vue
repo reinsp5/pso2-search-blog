@@ -11,7 +11,6 @@ watch(
       .replace(/[\s　]/g, "")
       .split("#")
       .filter((tag) => tag.length > 0);
-    console.log(itemInfo.value.tags);
   },
   { immediate: true }
 );
@@ -20,6 +19,7 @@ watch(
 <template>
   <v-text-field
     v-model="tags"
+    class="mt-4"
     label="タグ"
     variant="outlined"
     density="comfortable"

@@ -59,7 +59,6 @@ watch(
   () => potentials.value,
   (newVal) => {
     itemInfo.value.potentials = newVal;
-    console.log(itemInfo.value);
   }
 );
 

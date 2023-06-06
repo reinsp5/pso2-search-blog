@@ -23,24 +23,26 @@ watch(
   <v-row v-if="!hiddenForm">
     <v-col>
       <v-text-field
-        v-model="itemInfo.def_power_min"
+        :rules="[required]"
+        :model-value="itemInfo.def_power_min"
+        @update:model-value="itemInfo.def_power_min = Number($event)"
         class="mt-4"
         label="最小防御力"
         type="number"
         variant="outlined"
         density="comfortable"
-        :rules="[required]"
       />
     </v-col>
     <v-col>
       <v-text-field
-        v-model="itemInfo.def_power_max"
+        :rules="[required]"
+        :model-value="itemInfo.def_power_max"
+        @update:model-value="itemInfo.def_power_max = Number($event)"
         class="mt-4"
         label="最大防御力"
         type="number"
         variant="outlined"
         density="comfortable"
-        :rules="[required]"
       />
     </v-col>
   </v-row>

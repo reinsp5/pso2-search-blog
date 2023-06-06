@@ -24,10 +24,7 @@ const attributes = reactive<Attribute>(new Attribute());
 watch(
   () => ({ ...attributes }),
   (newVal) => {
-    itemInfo.value.attribute = itemInfo.value.attribute || <Attribute>{};
-    console.log(newVal);
     itemInfo.value.attribute = newVal;
-    console.log(itemInfo.value.attribute);
   }
 );
 </script>
@@ -39,7 +36,8 @@ watch(
     <v-row>
       <v-col>
         <v-text-field
-          v-model="attributes.s_atk_up"
+          :model-value="itemInfo.attribute.s_atk_up"
+          @update:model-value="itemInfo.attribute.s_atk_up = Number($event)"
           type="number"
           label="打撃上昇"
           variant="outlined"
@@ -49,7 +47,8 @@ watch(
       </v-col>
       <v-col>
         <v-text-field
-          v-model="attributes.r_atk_up"
+          :model-value="itemInfo.attribute.r_atk_up"
+          @update:model-value="itemInfo.attribute.r_atk_up = Number($event)"
           type="number"
           label="射撃上昇"
           variant="outlined"
@@ -59,7 +58,8 @@ watch(
       </v-col>
       <v-col>
         <v-text-field
-          v-model="attributes.t_atk_up"
+          :model-value="itemInfo.attribute.t_atk_up"
+          @update:model-value="itemInfo.attribute.t_atk_up = Number($event)"
           type="number"
           label="法撃上昇"
           variant="outlined"
@@ -73,7 +73,8 @@ watch(
     <v-row>
       <v-col>
         <v-text-field
-          v-model="attributes.hp_up"
+          :model-value="itemInfo.attribute.hp_up"
+          @update:model-value="itemInfo.attribute.hp_up = Number($event)"
           type="number"
           label="ＨＰ上昇"
           variant="outlined"
@@ -83,7 +84,8 @@ watch(
       </v-col>
       <v-col>
         <v-text-field
-          v-model="attributes.pp_up"
+          :model-value="itemInfo.attribute.pp_up"
+          @update:model-value="itemInfo.attribute.pp_up = Number($event)"
           type="number"
           label="ＰＰ上昇"
           variant="outlined"
@@ -101,7 +103,10 @@ watch(
     <v-row>
       <v-col>
         <v-text-field
-          v-model="attributes.damage_resist"
+          :model-value="itemInfo.attribute.damage_resist"
+          @update:model-value="
+            itemInfo.attribute.damage_resist = Number($event)
+          "
           type="number"
           label="ダメージ耐性"
           variant="outlined"
@@ -111,7 +116,8 @@ watch(
       </v-col>
       <v-col>
         <v-text-field
-          v-model="attributes.burn_resist"
+          :model-value="itemInfo.attribute.burn_resist"
+          @update:model-value="itemInfo.attribute.burn_resist = Number($event)"
           type="number"
           label="炎耐性"
           variant="outlined"
@@ -121,7 +127,8 @@ watch(
       </v-col>
       <v-col>
         <v-text-field
-          v-model="attributes.freeze_resist"
+          :model-value="itemInfo.attribute.freeze_resist"
+          @update:model-value="itemInfo.attribute.freeze_resist = Number($event)"
           type="number"
           label="氷耐性"
           variant="outlined"
@@ -135,7 +142,8 @@ watch(
     <v-row>
       <v-col>
         <v-text-field
-          v-model="attributes.shock_resist"
+          :model-value="itemInfo.attribute.shock_resist"
+          @update:model-value="itemInfo.attribute.shock_resist = Number($event)"
           type="number"
           label="雷耐性"
           variant="outlined"
@@ -145,7 +153,8 @@ watch(
       </v-col>
       <v-col>
         <v-text-field
-          v-model="attributes.mirage_resist"
+          :model-value="itemInfo.attribute.mirage_resist"
+          @update:model-value="itemInfo.attribute.mirage_resist = Number($event)"
           type="number"
           label="風耐性"
           variant="outlined"
@@ -155,7 +164,8 @@ watch(
       </v-col>
       <v-col>
         <v-text-field
-          v-model="attributes.panick_resist"
+          :model-value="itemInfo.attribute.panick_resist"
+          @update:model-value="itemInfo.attribute.panick_resist = Number($event)"
           type="number"
           label="光耐性"
           variant="outlined"
@@ -169,7 +179,8 @@ watch(
     <v-row>
       <v-col>
         <v-text-field
-          v-model="attributes.poison_resist"
+          :model-value="itemInfo.attribute.poison_resist"
+          @update:model-value="itemInfo.attribute.poison_resist = Number($event)"
           type="number"
           label="闇耐性"
           variant="outlined"
@@ -179,7 +190,8 @@ watch(
       </v-col>
       <v-col>
         <v-text-field
-          v-model="attributes.pain_resist"
+          :model-value="itemInfo.attribute.pain_resist"
+          @update:model-value="itemInfo.attribute.pain_resist = Number($event)"
           type="number"
           label="ペイン耐性"
           variant="outlined"
@@ -189,7 +201,8 @@ watch(
       </v-col>
       <v-col>
         <v-text-field
-          v-model="attributes.env_resist"
+          :model-value="itemInfo.attribute.env_resist"
+          @update:model-value="itemInfo.attribute.env_resist = Number($event)"
           type="number"
           label="環境耐性"
           variant="outlined"

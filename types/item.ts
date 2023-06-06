@@ -30,6 +30,8 @@ export class Item {
   melodies: string[] = [];
   hidden_decoration: boolean = false;
   color_variant: boolean = false;
+  cover_image_url: string = "";
+  other_image_urls: string[] = [];
 }
 
 /**

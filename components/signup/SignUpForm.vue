@@ -1,19 +1,9 @@
 <script lang="ts" setup>
-const { account } = useAppwrite();
-
-// Discordで登録
-const signUpAsDiscord = async () => {
-  try {
-    await account.createOAuth2Session("discord", "http://localhost:3000");
-  } catch (e) {
-    console.error(e);
-  }
-};
-
 // Googleで登録
 const signUpAsGoogle = async () => {
+  const { signInGoogle } = useAuth();
   try {
-    await account.createOAuth2Session("google", "http://localhost:3000");
+    await signInGoogle();
   } catch (e) {
     console.error(e);
   }
@@ -28,6 +18,7 @@ const signUpAsTwitter = async () => {
     console.error(e);
   }
 };
+
 </script>
 
 <template>
@@ -76,19 +67,6 @@ const signUpAsTwitter = async () => {
         >
           <Icon class="mx-2" name="mdi:twitter" size="24" />
           Twitterで登録
-        </v-btn>
-
-        <!-- Discord -->
-        <v-btn
-          block
-          class="text-none mb-2"
-          color="indigo"
-          size="x-large"
-          variant="flat"
-          @click="signUpAsDiscord"
-        >
-          <Icon class="mx-2" name="ic:baseline-discord" size="24" />
-          DISCORDで登録
         </v-btn>
 
         <!-- Google -->

@@ -13,21 +13,14 @@ watch(
     hiddenForm.value = newVal !== "武器" && newVal !== "防具";
   }
 );
-
-const minLevel = ref(0);
-watch(
-  () => minLevel.value,
-  (newVal) => {
-    itemInfo.value.requirement.min_level = newVal;
-  }
-);
 </script>
 
 <template>
   <v-row v-if="!hiddenForm">
     <v-col>
       <v-text-field
-        v-model="minLevel"
+        :model-value="itemInfo.requirement.min_level"
+        @update:model-value="itemInfo.requirement.min_level = Number($event)"
         type="number"
         label="必要最小Lv."
         variant="outlined"

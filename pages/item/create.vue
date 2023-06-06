@@ -5,10 +5,11 @@
     <v-row class="h-100" align="center">
       <v-col>
         <v-card class="mx-auto px-6 py-8" max-width="720">
-          <v-card-title class="text-center">アイテム登録</v-card-title>
+          <v-card-title class="d-flex align-center justify-center text-h5">アイテム登録</v-card-title>
           <v-form>
             <!-- 共通項目 -->
             <ItemNameField />
+            <ItemMainImage />
             <ItemCategorySelector />
             <ItemSubCategorySelector />
             <ItemRarity />
@@ -37,6 +38,9 @@
             <!-- 防具 -->
             <DefPowerField />
             <AttributeFields />
+
+            <!-- 武器迷彩 -->
+            <MountableWeaponTypesSelector />
           </v-form>
           <v-card-actions>
             <ItemCreateBtn />

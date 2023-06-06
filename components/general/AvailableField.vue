@@ -8,7 +8,6 @@ watch(
   available_at,
   (newVal) => {
     itemInfo.value.available_at = newVal.split("\n");
-    console.log(itemInfo.value.available_at);
   },
   { immediate: true }
 );

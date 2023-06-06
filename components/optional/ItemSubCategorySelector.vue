@@ -6,7 +6,8 @@ const itemInfo = useInsertItemInfo();
 const hiddenForm = ref(true);
 
 // 表示中のときは必須入力チェック
-const required = (v: string) => (hiddenForm.value ? true : !!v) || "必ず入力してください";
+const required = (v: string) =>
+  (hiddenForm.value ? true : !!v) || "必ず入力してください";
 
 // カテゴリフィールドの変化を監視する
 watch(
@@ -14,14 +15,6 @@ watch(
   (newVal) => {
     // カテゴリによって表示するフォームを切り替える
     switch (newVal) {
-      case "武器":
-      case "防具":
-      case "武器迷彩":
-      case "マグフォルム":
-      case "ミュージックディスク":
-        hiddenForm.value = true;
-        items = [];
-        break;
       case "キャラクタークリエイト":
         hiddenForm.value = false;
         items = characterCreateCategories;
@@ -30,21 +23,16 @@ watch(
         hiddenForm.value = false;
         items = consumableItems;
         break;
+      default:
+        hiddenForm.value = true;
+        items = [];
+        break;
     }
-    console.log(itemInfo.value);
-  },
+  }
 );
 
 // 選択肢
-let items: string[] = [
-  "武器",
-  "防具",
-  "武器迷彩",
-  "キャラクタークリエイト",
-  "消費アイテム",
-  "素材アイテム",
-  "その他",
-];
+let items: string[] = [];
 
 const characterCreateCategories = [
   "顔",
@@ -81,7 +69,6 @@ const consumableItems = [
   "マイショップアイテム",
   "その他",
 ];
-
 </script>
 
 <template>

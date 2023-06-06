@@ -1,10 +1,9 @@
 <script lang="ts" setup>
-const { account } = useAppwrite();
-
-// Discordでログイン
-const signInAsDiscord = async () => {
+// Twitterでログイン
+const signInAsTwitter = async () => {
+  const { signInGoogle } = useAuth();
   try {
-    await account.createOAuth2Session("discord", "http://localhost:3000");
+    await signInGoogle();
   } catch (e) {
     console.error(e);
   }
@@ -12,13 +11,13 @@ const signInAsDiscord = async () => {
 
 // Googleでログイン
 const signInAsGoogle = async () => {
+  const { signInTwitter } = useAuth();
   try {
-    await account.createOAuth2Session("google", "http://localhost:3000");
+    await signInTwitter();
   } catch (e) {
     console.error(e);
   }
 };
-
 </script>
 
 <template>
@@ -35,18 +34,17 @@ const signInAsGoogle = async () => {
     <v-card-title>OAuthログイン</v-card-title>
     <v-row class="mx-4 mb-2">
       <v-col>
-        
-        <!-- Discord -->
+        <!-- Twitter -->
         <v-btn
           block
           class="text-none mb-2"
-          color="indigo"
+          color="blue"
           size="x-large"
           variant="flat"
-          @click="signInAsDiscord"
+          @click="signInAsTwitter"
         >
-          <Icon class="mx-2" name="ic:baseline-discord" size="24" />
-          DISCORDでログイン
+          <Icon class="mx-2" name="mdi:twitter" size="24" />
+          Twitterで登録
         </v-btn>
 
         <!-- Google -->
@@ -58,7 +56,7 @@ const signInAsGoogle = async () => {
           @click="signInAsGoogle"
         >
           <Icon class="mx-2" name="logos:google-icon" size="24" />
-          GOOGLEでログイン
+          GOOGLEで登録
         </v-btn>
       </v-col>
     </v-row>

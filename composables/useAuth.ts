@@ -5,6 +5,7 @@ import {
   getAuth,
   TwitterAuthProvider,
   signInWithPopup,
+  GoogleAuthProvider,
 } from "firebase/auth";
 
 /**
@@ -24,6 +25,20 @@ export const useAuth = () => {
         email,
         password
       );
+      // ログイン永続化
+      await setPersistence(auth, browserLocalPersistence);
+      return navigateTo("/");
+    } catch (error: unknown) {
+      loginError.value = error;
+    }
+  };
+
+  // Googleでログイン
+  const signInGoogle = async () => {
+    try {
+      const auth = getAuth();
+      const provider = new GoogleAuthProvider();
+      const userCredential = await signInWithPopup(auth, provider);
       // ログイン永続化
       await setPersistence(auth, browserLocalPersistence);
       return navigateTo("/");
@@ -62,6 +77,7 @@ export const useAuth = () => {
     loginError,
     signInMail,
     signInTwitter,
+    signInGoogle,
     signOut,
   };
 };

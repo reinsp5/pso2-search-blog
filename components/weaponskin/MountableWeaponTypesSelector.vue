@@ -9,28 +9,34 @@ const hiddenForm = ref(true);
 const required = (v: string) =>
   (hiddenForm.value ? true : !!v) || "必ず入力してください";
 
-const items = [
-  "セズン・ルーナフィーヴ",
-  "セズン・オートナルフィーヴ",
-  "セズン・ヴィンターフィーヴ",
-  "セズン・スプリングフィーヴ",
-  "セズン・セクンダアニバフィーヴ",
+// 選択肢
+const items: string[] = [
+  "ソード",
+  "ワイヤードランス",
+  "パルチザン",
+  "ツインダガー",
+  "ダブルセイバー",
+  "ナックル",
+  "カタナ",
+  "デュアルブレード",
+  "アサルトライフル",
+  "ランチャー",
+  "ツインマシンガン",
+  "バレットボウ",
+  "ガンスラッシュ",
+  "ロッド",
+  "タリス",
+  "ウォンド",
+  "ジェットブーツ",
+  "タクト",
 ];
-
-const special_abilities = ref<string[]>([]);
-watch(
-  () => special_abilities.value,
-  (newVal) => {
-    itemInfo.value.special_abilities = newVal;
-  }
-);
 
 // カテゴリフィールドの変化を監視する
 watch(
   () => itemInfo.value.category,
   (newVal) => {
     // カテゴリーが「武器」以外のときは表示しない
-    hiddenForm.value = newVal !== "武器";
+    hiddenForm.value = newVal !== "武器迷彩";
   }
 );
 </script>
@@ -38,9 +44,9 @@ watch(
 <template>
   <v-select
     v-if="!hiddenForm"
-    v-model="special_abilities"
+    v-model="itemInfo.mountable_weapon_types"
     class="mt-4"
-    label="特殊能力"
+    label="適用可能武器種"
     :items="items"
     :rules="[required]"
     variant="outlined"

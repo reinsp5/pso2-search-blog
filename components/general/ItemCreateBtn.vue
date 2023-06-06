@@ -41,6 +41,7 @@ const insertItem = async () => {
       // ドキュメントを追加
       const docRef = await addDoc(collection(store, "items"), {
         ...itemInfo.value,
+        id: uuidv4(),
         requirement: {
           ...itemInfo.value.requirement,
         },
