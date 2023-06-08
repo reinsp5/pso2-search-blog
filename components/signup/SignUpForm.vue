@@ -42,7 +42,7 @@ const signUpAsTwitter = async () => {
           <v-btn
             class="mb-4"
             color="blue-darken-4"
-            size="large"
+            size="x-large"
             type="submit"
             variant="elevated"
             block

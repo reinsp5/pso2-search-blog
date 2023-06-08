@@ -1,12 +1,14 @@
 <script lang="ts" setup>
+import { getAuth } from "firebase/auth";
+
 definePageMeta({
   middleware: ["auth"],
 });
-const { account } = useAppwrite();
 
 const signOut = async () => {
+  const { signOut } = getAuth();
   try {
-    await account.deleteSession("current");
+    await signOut();
     return await navigateTo("/");
   } catch (e) {
     console.error(e);

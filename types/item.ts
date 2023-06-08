@@ -5,7 +5,7 @@ export class Item {
   id: string = "";
   name: string = "";
   category: string = "";
-  rarity: number = 0;
+  rarity: number = 1;
   tradeable: boolean = false;
   pso2_revival: boolean = false;
   available_at: string[] = [];
@@ -27,11 +27,11 @@ export class Item {
   special_abilities: string[] = [];
   potentials: string[] = [];
   mountable_weapon_types: string[] = [];
-  melodies: string[] = [];
+  //melodies: string[] = [];
   hidden_decoration: boolean = false;
   color_variant: boolean = false;
-  cover_image_url: string = "";
-  other_image_urls: string[] = [];
+  cover_image_url: ImageInfo = new ImageInfo();
+  other_image_urls: ImageInfo[] = [];
 }
 
 /**
@@ -65,4 +65,10 @@ export class Attribute {
   poison_resist: number = 0;
   pain_resist: number = 0;
   env_resist: number = 0;
+}
+
+// イメージ
+export class ImageInfo {
+  id: string = "";
+  url: string = "";
 }

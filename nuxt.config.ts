@@ -2,7 +2,7 @@ import vuetify from "vite-plugin-vuetify";
 
 export default defineNuxtConfig({
   ssr: false,
-  modules: ["nuxt-icon", "nuxt-appwrite"],
+  modules: ["nuxt-icon"],
   typescript: {
     strict: true,
     typeCheck: true,
@@ -31,6 +31,9 @@ export default defineNuxtConfig({
     },
   ],
   runtimeConfig: {
+    minioAccessKey: "",
+    minioAccessSecret: "",
+    cloudflareImagesKey: "",
     public: {
       firebaseApiKey: "",
       firebaseAuthDomain: "",
@@ -48,9 +51,5 @@ export default defineNuxtConfig({
         lang: "ja",
       },
     },
-  },
-  appwrite: {
-    endpoint: "https://app.reinsp5.com/v1",
-    project: "647a9d5bcd1b16d1f3ff",
   },
 });

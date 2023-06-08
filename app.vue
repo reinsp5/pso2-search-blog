@@ -1,10 +1,12 @@
 <script lang="ts" setup>
-import { mdiHome, mdiAccount } from "@mdi/js";
+import { mdiHome, mdiPencilPlus, mdiLogin, mdiAccountPlus } from "@mdi/js";
 const drawer = ref(false);
 
 const routes = [
   { id: 1, title: "ホーム", path: "/", icon: mdiHome },
-  { id: 2, title: "アカウント", path: "/account", icon: mdiAccount },
+  { id: 2, title: "登録", path: "/signup", icon: mdiAccountPlus },
+  { id: 3, title: "ログイン", path: "/signin", icon: mdiLogin },
+  { id: 4, title: "アイテム登録", path: "/item/create", icon: mdiPencilPlus },
 ];
 </script>
 

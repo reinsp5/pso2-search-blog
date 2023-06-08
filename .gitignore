@@ -12,3 +12,5 @@ dist
 docker-compose.yml
 *.bat
 emulator_data
+firestore.rules
+firebase.json

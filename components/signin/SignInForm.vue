@@ -44,7 +44,7 @@ const signInAsGoogle = async () => {
           @click="signInAsTwitter"
         >
           <Icon class="mx-2" name="mdi:twitter" size="24" />
-          Twitterで登録
+          Twitterでログイン
         </v-btn>
 
         <!-- Google -->
@@ -56,7 +56,7 @@ const signInAsGoogle = async () => {
           @click="signInAsGoogle"
         >
           <Icon class="mx-2" name="logos:google-icon" size="24" />
-          GOOGLEで登録
+          GOOGLEでログイン
         </v-btn>
       </v-col>
     </v-row>
