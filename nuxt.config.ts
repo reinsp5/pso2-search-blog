@@ -6,9 +6,6 @@ export default defineNuxtConfig({
     strict: true,
     typeCheck: true,
   },
-  nitro: {
-    preset: "cloudflare_pages"
-  },
   build: {
     transpile: ["vuetify"],
   },
