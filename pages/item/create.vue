@@ -100,7 +100,7 @@ const createItem = async () => {
         },
         cover_image_url: {
           id: imageUploadURL.id,
-          url: cloudflareResponse.url,
+          url: `https://imagedelivery.net/y6deFg4uWz5Imy5sDx3EYA/${imageUploadURL.id}/public`,
         },
         create_user: user?.displayName,
         update_user: user?.displayName,
