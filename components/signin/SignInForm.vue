@@ -23,9 +23,9 @@ const signIn = async () => {
 
 // Twitterでログイン
 const signInAsTwitter = async () => {
-  const { signInGoogle } = useAuth();
+  const { signInTwitter } = useAuth();
   try {
-    await signInGoogle();
+    await signInTwitter();
   } catch (e) {
     console.error(e);
   }
@@ -33,9 +33,9 @@ const signInAsTwitter = async () => {
 
 // Googleでログイン
 const signInAsGoogle = async () => {
-  const { signInTwitter } = useAuth();
+  const { signInGoogle } = useAuth();
   try {
-    await signInTwitter();
+    await signInGoogle();
   } catch (e) {
     console.error(e);
   }
