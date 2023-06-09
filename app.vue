@@ -2,12 +2,6 @@
 import { mdiHome, mdiPencilPlus, mdiLogin, mdiAccountPlus } from "@mdi/js";
 const drawer = ref(false);
 
-const routes = [
-  { id: 1, title: "ホーム", path: "/", icon: mdiHome },
-  { id: 2, title: "登録", path: "/signup", icon: mdiAccountPlus },
-  { id: 3, title: "ログイン", path: "/signin", icon: mdiLogin },
-  { id: 4, title: "アイテム登録", path: "/item/create", icon: mdiPencilPlus },
-];
 </script>
 
 <template>
@@ -18,14 +12,10 @@ const routes = [
     </v-app-bar>
     <v-navigation-drawer v-model="drawer" temporary>
       <v-list nav>
-        <v-list-item
-          v-for="route in routes"
-          :key="route.id"
-          :prepend-icon="route.icon"
-          :title="route.title"
-          :to="route.path"
-          nuxt
-        />
+        <v-list-item :prepend-icon="mdiHome" title="ホーム" to="/" nuxt />
+        <v-list-item :prepend-icon="mdiHome" title="登録" to="/signup" nuxt />
+        <v-list-item :prepend-icon="mdiHome" title="ログイン" to="/signin" nuxt />
+        <v-list-item :prepend-icon="mdiHome" title="アイテム登録" to="/item/create" nuxt />
       </v-list>
     </v-navigation-drawer>
     <v-main>
