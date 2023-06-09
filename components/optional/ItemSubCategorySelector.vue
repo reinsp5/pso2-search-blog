@@ -19,6 +19,10 @@ watch(
         hiddenForm.value = false;
         items = characterCreateCategories;
         break;
+      case "クリエイティブスペース":
+        hiddenForm.value = false;
+        items = creativeSpaceItems;
+        break;
       case "消費アイテム":
         hiddenForm.value = false;
         items = consumableItems;
@@ -58,6 +62,17 @@ const characterCreateCategories = [
   "ボディパーツ",
   "アームパーツ",
   "レッグパーツ",
+];
+
+// クリエイティブスペース
+const creativeSpaceItems = [
+  "建材",
+  "建築物／道具／器具",
+  "自然物",
+  "家具",
+  "ギミックパーツ",
+  "立体図形",
+  "コラボ",
 ];
 
 // 消費アイテム

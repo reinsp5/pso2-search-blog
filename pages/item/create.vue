@@ -31,12 +31,14 @@ const loading = ref(false);
 const createItem = async () => {
   loading.value = true;
   if (!itemCreateForm.value) {
+    loading.value = false;
     return;
   }
   // バリデーション
   const isValid = await itemCreateForm.value.validate();
   console.log(isValid);
   if (!isValid.valid) {
+    loading.value = false;
     return;
   }
 

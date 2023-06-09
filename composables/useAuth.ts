@@ -6,6 +6,7 @@ import {
   TwitterAuthProvider,
   signInWithPopup,
   GoogleAuthProvider,
+  createUserWithEmailAndPassword,
 } from "firebase/auth";
 
 /**
@@ -15,6 +16,19 @@ import {
 export const useAuth = () => {
   // ログイントークン
   const loginError = useState<unknown | null>("loginError", () => null);
+
+  // メールアドレスでユーザ登録
+  const signUpMail = async (email: string, password: string) => {
+    try {
+      const auth = getAuth();
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      // ログイン永続化
+      await setPersistence(auth, browserLocalPersistence);
+      return navigateTo("/");
+    } catch (error: unknown) {
+      loginError.value = error;
+    }
+  };
 
   // メールアドレスでログイン
   const signInMail = async (email: string, password: string) => {
@@ -75,6 +89,7 @@ export const useAuth = () => {
 
   return {
     loginError,
+    signUpMail,
     signInMail,
     signInTwitter,
     signInGoogle,
