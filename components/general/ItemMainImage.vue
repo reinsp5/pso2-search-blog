@@ -22,8 +22,8 @@ const preview = () => {
     const imageElement = new Image();
     imageElement.onload = function () {
       const canvas = new fabric.Canvas(document.createElement("canvas"), {
-        width: imageElement.width,
-        height: imageElement.height,
+        width: 320,
+        height: 320,
       });
 
       const imageInstance = new fabric.Image(imageElement, {
@@ -31,7 +31,8 @@ const preview = () => {
         top: 0,
       });
 
-      canvas.add(imageInstance.scaleToHeight(256));
+      canvas.add(imageInstance.scaleToHeight(320));
+      canvas.add(imageInstance.scaleToWidth(320));
 
       const text = new fabric.Text("© SEGA", {
         left: 12,
