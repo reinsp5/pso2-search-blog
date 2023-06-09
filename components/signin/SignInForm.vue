@@ -22,11 +22,30 @@ const signInAsGoogle = async () => {
 
 <template>
   <v-card>
-    <v-card-title>ログイン</v-card-title>
+    <v-card-title class="text-center mb-4">ログイン</v-card-title>
     <v-row class="mx-4">
       <v-col>
         <v-form>
-          <v-text-field></v-text-field>
+          <v-text-field
+            label="メールアドレス"
+            variant="outlined"
+            density="compact"
+          />
+          <v-text-field
+            label="パスワード"
+            variant="outlined"
+            density="compact"
+          />
+          <v-btn
+            class="mb-4"
+            color="blue-darken-4"
+            size="x-large"
+            type="submit"
+            variant="elevated"
+            block
+          >
+            ログインする
+          </v-btn>
         </v-form>
       </v-col>
     </v-row>
@@ -43,8 +62,8 @@ const signInAsGoogle = async () => {
           variant="flat"
           @click="signInAsTwitter"
         >
-          <Icon class="mx-2" name="mdi:twitter" size="24" />
-          Twitterでログイン
+          <nuxt-icon class="mr-2" name="twitter" />
+          TWITTERでログイン
         </v-btn>
 
         <!-- Google -->
@@ -55,7 +74,7 @@ const signInAsGoogle = async () => {
           variant="outlined"
           @click="signInAsGoogle"
         >
-          <Icon class="mx-2" name="logos:google-icon" size="24" />
+          <nuxt-icon class="mr-2" name="google" filled />
           GOOGLEでログイン
         </v-btn>
       </v-col>
@@ -63,4 +82,9 @@ const signInAsGoogle = async () => {
   </v-card>
 </template>
 
-<style scoped></style>
+<style>
+.nuxt-icon svg {
+  width: 32px;
+  height: 32px;
+}
+</style>

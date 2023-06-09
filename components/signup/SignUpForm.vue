@@ -18,7 +18,6 @@ const signUpAsTwitter = async () => {
     console.error(e);
   }
 };
-
 </script>
 
 <template>
@@ -31,13 +30,13 @@ const signUpAsTwitter = async () => {
             type="email"
             label="メールアドレス"
             variant="outlined"
-            density="comfortable"
+            density="compact"
           />
           <v-text-field
             type="password"
             label="パスワード"
             variant="outlined"
-            density="comfortable"
+            density="compact"
           />
           <v-btn
             class="mb-4"
@@ -65,8 +64,8 @@ const signUpAsTwitter = async () => {
           variant="flat"
           @click="signUpAsTwitter"
         >
-          <Icon class="mx-2" name="mdi:twitter" size="24" />
-          Twitterで登録
+          <nuxt-icon class="mr-2" name="twitter" />
+          TWITTERで登録
         </v-btn>
 
         <!-- Google -->
@@ -77,7 +76,7 @@ const signUpAsTwitter = async () => {
           variant="outlined"
           @click="signUpAsGoogle"
         >
-          <Icon class="mx-2" name="logos:google-icon" size="24" />
+          <nuxt-icon class="mr-2" name="google" filled />
           GOOGLEで登録
         </v-btn>
       </v-col>
@@ -85,4 +84,9 @@ const signUpAsTwitter = async () => {
   </v-card>
 </template>
 
-<style scoped></style>
+<style>
+.nuxt-icon svg {
+  width: 32px;
+  height: 32px;
+}
+</style>

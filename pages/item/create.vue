@@ -12,6 +12,12 @@ import {
 } from "firebase/firestore";
 import type { VForm } from "vuetify/lib/components/index.mjs";
 import { v4 as uuidv4 } from "uuid";
+
+// 認証必須
+definePageMeta({
+  middleware: ["auth"],
+});
+
 // 入力情報の共有State
 const itemInfo = useInsertItemInfo();
 
@@ -162,7 +168,7 @@ const createItem = async () => {
               <v-btn
                 :loading="loading"
                 class="text-none mt-8"
-                color="indigo"
+                color="blue-darken-4"
                 size="x-large"
                 variant="flat"
                 type="submit"

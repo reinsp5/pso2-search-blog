@@ -1,11 +1,13 @@
 import vuetify from "vite-plugin-vuetify";
 
 export default defineNuxtConfig({
-  ssr: false,
-  modules: ["nuxt-icon"],
+  modules: ["nuxt-icons"],
   typescript: {
     strict: true,
     typeCheck: true,
+  },
+  nitro: {
+    preset: "cloudflare_pages"
   },
   build: {
     transpile: ["vuetify"],
