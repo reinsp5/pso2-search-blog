@@ -14,11 +14,11 @@ const signIn = async () => {
     return;
   }
   const { signInMail } = useAuth();
-  try {
-    await signInMail(email.value, password.value);
-  } catch (e) {
-    console.error(e);
-  }
+  // try {
+  //   await signInMail(email.value, password.value);
+  // } catch (e) {
+  //   console.error(e);
+  // }
 };
 
 // Twitterでログイン
@@ -33,12 +33,12 @@ const signInAsTwitter = async () => {
 
 // Googleでログイン
 const signInAsGoogle = async () => {
-  const { signInGoogle } = useAuth();
-  try {
-    await signInGoogle();
-  } catch (e) {
-    console.error(e);
-  }
+  // const { signInGoogle } = useAuth();
+  // try {
+  //   await signInGoogle();
+  // } catch (e) {
+  //   console.error(e);
+  // }
 };
 
 // メールアドレスのバリデーション
@@ -116,6 +116,13 @@ const passwordRules = [
           <nuxt-icon class="mr-2" name="google" filled />
           GOOGLEでログイン
         </v-btn>
+      </v-col>
+    </v-row>
+    <v-row align="center">
+      <v-col class="mx-4 mb-2">
+        <NuxtLink to="/signup">
+          新規登録はこちら
+        </NuxtLink>
       </v-col>
     </v-row>
   </v-card>

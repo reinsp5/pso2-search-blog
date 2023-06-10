@@ -2,6 +2,7 @@
 import { mdiHome, mdiPencilPlus, mdiLogin, mdiAccountPlus } from "@mdi/js";
 const drawer = ref(false);
 
+const icons = ["mdi-facebook", "mdi-twitter", "mdi-linkedin", "mdi-instagram"];
 </script>
 
 <template>
@@ -12,13 +13,21 @@ const drawer = ref(false);
     <v-navigation-drawer v-model="drawer" temporary>
       <v-list nav>
         <v-list-item :prepend-icon="mdiHome" title="ホーム" to="/" nuxt />
-        <v-list-item :prepend-icon="mdiHome" title="登録" to="/signup" nuxt />
-        <v-list-item :prepend-icon="mdiHome" title="ログイン" to="/signin" nuxt />
-        <v-list-item :prepend-icon="mdiHome" title="アイテム登録" to="/item/create" nuxt />
+        <v-list-item
+          :prepend-icon="mdiHome"
+          title="アイテム登録"
+          to="/item/create"
+          nuxt
+        />
       </v-list>
     </v-navigation-drawer>
     <v-main>
       <NuxtPage />
     </v-main>
+    <v-footer class="d-flex flex-column mx-0 px-0" app absolute>
+      <div class="px-4 py-2 text-center w-100">
+        {{ new Date().getFullYear() }} — <strong>PSO2アイテム検索</strong>
+      </div>
+    </v-footer>
   </v-app>
 </template>

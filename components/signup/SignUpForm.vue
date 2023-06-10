@@ -17,21 +17,21 @@ const signUp = async () => {
   }
   
   const { signUpMail } = useAuth();
-  try {
-    await signUpMail(email.value, password.value);
-  } catch (e) {
-    console.error(e);
-  }
+  // try {
+  //   await signUpMail(email.value, password.value);
+  // } catch (e) {
+  //   console.error(e);
+  // }
 };
 
 // Googleで登録
 const signUpAsGoogle = async () => {
   const { signInGoogle } = useAuth();
-  try {
-    await signInGoogle();
-  } catch (e) {
-    console.error(e);
-  }
+  // try {
+  //   await signInGoogle();
+  // } catch (e) {
+  //   console.error(e);
+  // }
 };
 
 // Twitterで登録
@@ -125,6 +125,13 @@ const passwordRules = [
           <nuxt-icon class="mr-2" name="google" filled />
           GOOGLEで登録
         </v-btn>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col class="mx-4 mb-2">
+        <NuxtLink to="/signin">
+          ログインはこちら
+        </NuxtLink>
       </v-col>
     </v-row>
   </v-card>
