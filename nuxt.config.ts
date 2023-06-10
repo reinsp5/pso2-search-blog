@@ -8,10 +8,14 @@ const {
   NUXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
   NUXT_PUBLIC_FIREBASE_APP_ID,
   NUXT_CLOUDFLARE_IMAGES_KEY,
+  NUXT_PUBLIC_MEILISEARCH_API_KEY,
 } = process.env;
 
 export default defineNuxtConfig({
   ssr: false,
+  routeRules: {
+    "/": { ssr: false, prerender: false },
+  },
   modules: ["nuxt-icons"],
   typescript: {
     strict: true,
@@ -50,6 +54,7 @@ export default defineNuxtConfig({
       firebaseMessagingSenderId: NUXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID || "",
       firebaseAppId: NUXT_PUBLIC_FIREBASE_APP_ID || "",
       firebaseMeasurementId: "",
+      meilisearchApiKey: NUXT_PUBLIC_MEILISEARCH_API_KEY || "",
     },
   },
   app: {

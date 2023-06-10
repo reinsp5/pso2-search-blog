@@ -8,7 +8,6 @@ const drawer = ref(false);
   <v-app>
     <v-app-bar :elevation="0">
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-app-bar-title>PSO2アイテムデータベース（仮）</v-app-bar-title>
     </v-app-bar>
     <v-navigation-drawer v-model="drawer" temporary>
       <v-list nav>

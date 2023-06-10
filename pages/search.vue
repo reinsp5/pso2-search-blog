@@ -3,7 +3,7 @@ import { mdiMagnify } from "@mdi/js";
 import { Item } from "~/types/item";
 
 const keyword = ref("");
-const searchResults = useState<Item[]>('search-result', () => []);
+const searchResults = useState<Item[]>("search-result", () => []);
 
 const config = useRuntimeConfig();
 
@@ -40,20 +40,16 @@ const search = async () => {
   // 検索結果を保存
   const json = await response.json();
   searchResults.value = json.hits as Item[];
-  // 検索結果が１件以上ある場合は、検索結果を表示するページへ遷移
-  if (json.hits.length > 0) {
-    await navigateTo("/search");
-  }
 };
 </script>
 
 <template>
-  <v-container class="fill-height">
-    <v-row align="center" justify="center">
-      <v-col cols="12" align="center">
-        <span class="text-h3">PSO2アイテム検索</span>
+  <v-container fluid>
+    <v-row>
+      <v-col class="py-0" cols="12">
+        <span class="text-h5">検索</span>
       </v-col>
-      <v-col align="center" cols="8">
+      <v-col cols="8">
         <v-text-field
           :prepend-inner-icon="mdiMagnify"
           v-model="keyword"
@@ -65,6 +61,15 @@ const search = async () => {
         />
       </v-col>
     </v-row>
+    <v-list>
+      <v-list-item
+        v-for="result in searchResults"
+        :key="result.id"
+        :title="result.name"
+        :subtitle="result.category"
+        :prepend-avatar="result.cover_image_url.url"
+      />
+    </v-list>
   </v-container>
 </template>
 
