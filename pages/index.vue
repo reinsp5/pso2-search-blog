@@ -20,7 +20,6 @@ const compositionEnd = () => {
 };
 const search = async () => {
   // IME入力中は検索しない
-  console.log(isCompositioning.value);
   if (isCompositioning.value) {
     return;
   }

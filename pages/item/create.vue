@@ -36,7 +36,6 @@ const createItem = async () => {
   }
   // バリデーション
   const isValid = await itemCreateForm.value.validate();
-  console.log(isValid);
   if (!isValid.valid) {
     loading.value = false;
     return;
@@ -47,7 +46,6 @@ const createItem = async () => {
     method: "POST",
   });
   const imageUploadURL = await responseUploadUrl.json();
-  console.log(imageUploadURL);
 
   // 画像をアップロード
   const previewUrl = useState<string>("preview-url", () => "");
@@ -64,7 +62,6 @@ const createItem = async () => {
   if (!cloudflareResponse.ok) {
     throw new Error("画像のアップロードに失敗しました。");
   }
-  console.log(cloudflareResponse);
   // データベースに登録
   const store = getFirestore();
   try {

@@ -20,7 +20,6 @@ const compositionEnd = () => {
 };
 const search = async () => {
   // IME入力中は検索しない
-  console.log(isCompositioning.value);
   if (isCompositioning.value) {
     return;
   }
@@ -61,15 +60,7 @@ const search = async () => {
         />
       </v-col>
     </v-row>
-    <v-list>
-      <v-list-item
-        v-for="result in searchResults"
-        :key="result.id"
-        :title="result.name"
-        :subtitle="result.category"
-        :prepend-avatar="result.cover_image_url.url"
-      />
-    </v-list>
+    <SearchResultCard v-for="item in searchResults" :key="item.id" :item="item" />
   </v-container>
 </template>
 
