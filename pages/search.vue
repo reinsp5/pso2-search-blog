@@ -48,7 +48,7 @@ const search = async () => {
       <v-col class="py-0" cols="12">
         <span class="text-h5">検索</span>
       </v-col>
-      <v-col cols="8">
+      <v-col cols="12" sm="10" md="8" lg="7" xl="5">
         <v-text-field
           :prepend-inner-icon="mdiMagnify"
           v-model="keyword"
@@ -60,7 +60,11 @@ const search = async () => {
         />
       </v-col>
     </v-row>
-    <SearchResultCard v-for="item in searchResults" :key="item.id" :item="item" />
+    <v-row justify="center" justify-sm="start" >
+      <v-col v-for="item in searchResults" :key="item.id" cols="auto">
+        <SearchResultCard  :item="item" />
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 

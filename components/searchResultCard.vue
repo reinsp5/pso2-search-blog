@@ -30,20 +30,21 @@ const getClass = (index: number) => {
 
 <template>
   <v-hover>
-    <v-card variant="text" :to="`/item/${item.id}`" nav>
-      <v-row>
-        <v-avatar size="128" class="ma-8">
-          <v-img :src="item.cover_image_url.url" />
-        </v-avatar>
-        <v-col class="d-flex flex-column my-4">
-          <div class="text-h5">
-            {{ item.name }}
-          </div>
-          <v-sheet class="d-flex flex-wrap flex-column mt-1 text-body-2">
-            <v-sheet>カテゴリ：{{ item.category }}</v-sheet>
-            <v-sheet class="flex-grow-1">
-              レアリティ：
-              {{ item.rarity }}
+    <v-card max-width="400" variant="text" :to="`/item/${item.id}`" nav>
+      <v-card-title class="text-body-1 text-md-h5 font-weight-bold">
+        {{ item.name }}
+      </v-card-title>
+      <v-row class="ma-4" align="center" justify="center" no-gutters>
+        <v-col align="center" cols="12">
+          <v-avatar size="200" class="ma-8">
+            <v-img :src="item.cover_image_url.url" />
+          </v-avatar>
+        </v-col>
+        <!-- レアリティ -->
+        <v-col cols="12">
+          <v-row>
+            <v-col> レアリティ </v-col>
+            <v-col>
               <span
                 v-for="(star, index) in stars"
                 :key="index"
@@ -51,24 +52,47 @@ const getClass = (index: number) => {
               >
                 {{ star }}
               </span>
-            </v-sheet>
-            <v-sheet class="flex-grow-1">
-              マイショップ出品：
+            </v-col>
+          </v-row>
+        </v-col>
+        <!-- カテゴリ -->
+        <v-col cols="12">
+          <v-row>
+            <v-col> カテゴリ </v-col>
+            <v-col>
+              {{ item.category }}
+            </v-col>
+          </v-row>
+        </v-col>
+        <!-- マイショップ出品可否 -->
+        <v-col cols="12">
+          <v-row>
+            <v-col> マイショップ出品 </v-col>
+            <v-col>
               <v-icon
                 :icon="item.tradeable ? mdiCheckCircle : mdiCloseCircle"
                 :color="item.tradeable ? 'success' : 'error'"
               />
-            </v-sheet>
-            <v-sheet class="flex-grow-1">
-              PSO2リバイバル品：
-              <span :color="item.tradeable ? 'success' : 'error'">
-                {{ item.pso2_revival ? "YES" : "NO" }}
-              </span>
-            </v-sheet>
-          </v-sheet>
-          <v-row class="text-body-2 w-50">
+            </v-col>
+          </v-row>
+        </v-col>
+        <!-- PSO2リバイバル品 -->
+        <v-col cols="12">
+          <v-row>
+            <v-col> PSO2リバイバル品 </v-col>
             <v-col>
-              タグ：<v-chip
+              <span :color="item.tradeable ? 'success' : 'error'">
+                {{ item.pso2_revival ? "済" : "未済" }}
+              </span>
+            </v-col>
+          </v-row>
+        </v-col>
+        <!-- タグ -->
+        <v-col cols="12">
+          <v-row>
+            <v-col> タグ </v-col>
+            <v-col>
+              <v-chip
                 v-for="(tag, index) in item.tags"
                 :key="index"
                 :text="tag"

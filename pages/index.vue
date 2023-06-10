@@ -50,9 +50,9 @@ const search = async () => {
   <v-container class="fill-height">
     <v-row align="center" justify="center">
       <v-col cols="12" align="center">
-        <span class="text-h3">PSO2アイテム検索</span>
+        <span class="text-h4 text-md-h3">PSO2アイテム検索</span>
       </v-col>
-      <v-col align="center" cols="8">
+      <v-col align="center" cols="12" lg="8" xl="5">
         <v-text-field
           :prepend-inner-icon="mdiMagnify"
           v-model="keyword"

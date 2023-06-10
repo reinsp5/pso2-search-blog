@@ -13,9 +13,6 @@ const {
 
 export default defineNuxtConfig({
   ssr: false,
-  routeRules: {
-    "/": { ssr: false, prerender: false },
-  },
   modules: ["nuxt-icons"],
   typescript: {
     strict: true,
