@@ -30,7 +30,7 @@ const getClass = (index: number) => {
 
 <template>
   <v-hover>
-    <v-card max-width="400" variant="text" :to="`/item/${item.id}`" nav>
+    <v-card max-width="400" variant="outlined" :to="`/item/${item.id}`" nav>
       <v-card-title class="text-body-1 text-md-h5 font-weight-bold">
         {{ item.name }}
       </v-card-title>

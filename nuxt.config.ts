@@ -13,7 +13,7 @@ const {
 
 export default defineNuxtConfig({
   ssr: false,
-  modules: ["nuxt-icons"],
+  modules: ["nuxt-icons", "@nuxtjs/google-fonts"],
   typescript: {
     strict: true,
     typeCheck: true,
@@ -41,6 +41,15 @@ export default defineNuxtConfig({
       pathPrefix: false,
     },
   ],
+  googleFonts: {
+    families: {
+      "BIZ+UDPGothic": true,
+      Antonio: true,
+    },
+  },
+  experimental: {
+    viewTransition: true,
+  },
   runtimeConfig: {
     cloudflareImagesKey: NUXT_CLOUDFLARE_IMAGES_KEY || "",
     public: {

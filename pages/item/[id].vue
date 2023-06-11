@@ -1,16 +1,30 @@
 <script lang="ts" setup>
 import { mdiCheckCircle, mdiCloseCircle } from "@mdi/js";
 import { Item } from "~/types/item";
-// 検索結果の共有State
-const searchResults = useState<Item[]>("search-result", () => []);
 
+const config = useRuntimeConfig();
+
+let item = ref(new Item());
 const itemId = useRoute().params.id as string;
-
-const item = computed(() => {
-  return searchResults.value.find((item) => item.id === itemId) || new Item();
-});
+const response = await fetch(
+  "https://search.reinsp5.com/indexes/pso2-items/search",
+  {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${config.public.meilisearchApiKey}`,
+    },
+    body: JSON.stringify({
+      filter: `id = ${itemId}`,
+    }),
+  }
+);
+const json = await response.json();
+item.value = (json.hits[0] as Item) || new Item();
 
 const stars = Array(item.value.rarity).fill("★");
+console.log(item.value.rarity);
+console.log(stars);
 const getClass = (index: number) => {
   // 3つごとに色を変える
   if (index < 3) {
@@ -31,7 +45,7 @@ const getClass = (index: number) => {
 
 <template>
   <v-container class="h-100 d-flex justify-center align-center">
-    <v-card class="pa-4" max-width="960">
+    <v-card class="pa-4" max-width="960" variant="outlined">
       <v-card-title class="d-flex align-center justify-center">
         <span class="text-body-1 text-md-h5 font-weight-bold">
           {{ item.name }}
@@ -152,12 +166,9 @@ const getClass = (index: number) => {
           <v-row>
             <v-col>潜在能力</v-col>
             <v-col>
-              <v-sheet
-                v-for="(potential, index) in item.potentials"
-                :key="index"
-              >
+              <div v-for="(potential, index) in item.potentials" :key="index">
                 {{ potential }}
-              </v-sheet>
+              </div>
             </v-col>
           </v-row>
         </v-col>
@@ -166,13 +177,9 @@ const getClass = (index: number) => {
           <v-row>
             <v-col>入手方法</v-col>
             <v-col>
-              <v-sheet
-                v-for="(available, index) in item.available_at"
-                :key="index"
-                class="text-caption"
-              >
+              <div v-for="(available, index) in item.available_at" :key="index">
                 {{ available }}
-              </v-sheet>
+              </div>
             </v-col>
           </v-row>
         </v-col>

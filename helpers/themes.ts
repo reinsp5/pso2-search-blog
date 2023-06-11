@@ -6,13 +6,13 @@ export const MAIN_THEME = "mainTheme";
 export const mainTheme: ThemeDefinition = {
   dark: false,
   colors: {
-    background: "#FFFFFF",
-    surface: "#FFFFFF",
-    primary: "#4f46e5",
-    secondary: "#9333ea",
-    error: "#ef4444",
-    info: "#3b82f6",
-    success: "#22c55e",
+    background: "#D3DCEA",
+    surface: "#D3DCEA",
+    primary: "#1C3251",
+    secondary: "#D3DCEA",
+    error: "#B72425",
+    info: "#3093CC",
+    success: "#118C5C",
     warning: "#f59e0b",
   },
 };
@@ -23,13 +23,13 @@ export const MAIN_DARK_THEME = "mainDarkTheme";
 export const mainDarkTheme: ThemeDefinition = {
   dark: true,
   colors: {
-    background: "#0C111B",
-    surface: "#1f2937",
-    primary: "#6366f1",
-    secondary: "#9333ea",
-    error: "#ef4444",
-    info: "#3b82f6",
-    success: "#22c55e",
+    background: "#07101E",
+    surface: "#07101E",
+    primary: "#D3DCEA",
+    secondary: "#07101E",
+    error: "#B72425",
+    info: "#3093CC",
+    success: "#118C5C",
     warning: "#f59e0b",
   },
 };

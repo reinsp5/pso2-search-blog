@@ -1,14 +1,41 @@
 <script lang="ts" setup>
-import { mdiHome, mdiPencilPlus, mdiLogin, mdiAccountPlus } from "@mdi/js";
+import {
+  mdiHome,
+  mdiPencilPlus,
+  mdiLogin,
+  mdiAccountPlus,
+  mdiWeatherSunny,
+  mdiWeatherNight,
+} from "@mdi/js";
+import { useTheme } from "vuetify";
+import { MAIN_THEME, MAIN_DARK_THEME } from "@/helpers/themes";
 const drawer = ref(false);
-
-const icons = ["mdi-facebook", "mdi-twitter", "mdi-linkedin", "mdi-instagram"];
+const darkMode = ref(false);
+const theme = useTheme();
+const changeTheme = () => {
+  theme.global.name.value = darkMode.value ? MAIN_DARK_THEME : MAIN_THEME;
+};
 </script>
 
 <template>
   <v-app>
     <v-app-bar :elevation="0">
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
+      <template v-slot:prepend>
+        <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
+      </template>
+
+      <template v-slot:append>
+        <v-icon :icon="mdiWeatherSunny" />
+        <v-switch
+          v-model="darkMode"
+          class="mx-2"
+          color="success"
+          inset
+          hide-details
+          @change="changeTheme"
+        />
+        <v-icon class="mr-4" :icon="mdiWeatherNight" />
+      </template>
     </v-app-bar>
     <v-navigation-drawer v-model="drawer" temporary>
       <v-list nav>
@@ -24,10 +51,58 @@ const icons = ["mdi-facebook", "mdi-twitter", "mdi-linkedin", "mdi-instagram"];
     <v-main>
       <NuxtPage />
     </v-main>
-    <v-footer class="d-flex flex-column mx-0 px-0" app absolute>
-      <div class="px-4 py-2 text-center w-100">
-        {{ new Date().getFullYear() }} — <strong>PSO2アイテム検索</strong>
-      </div>
+    <v-footer color="primary" app absolute>
+      <v-row justify="center" no-gutters>
+        <v-btn
+          color="secondary"
+          variant="text"
+          class="mx-2"
+          rounded="xl"
+          to="/"
+          nav
+        >
+          ホーム
+        </v-btn>
+        <v-btn
+          color="secondary"
+          variant="text"
+          class="mx-2"
+          rounded="xl"
+          to="/item/create"
+          nav
+        >
+          アイテム登録
+        </v-btn>
+        <v-btn
+          color="secondary"
+          variant="text"
+          class="mx-2"
+          rounded="xl"
+          to="/terms"
+          nav
+        >
+          利用規約
+        </v-btn>
+        <v-btn
+          color="secondary"
+          variant="text"
+          class="mx-2"
+          rounded="xl"
+          to="/privacy"
+          nav
+        >
+          プライバシーポリシー
+        </v-btn>
+        <v-col class="text-center mt-4" cols="12">
+          {{ new Date().getFullYear() }} — <strong>PSO2 アイテム検索</strong>
+        </v-col>
+      </v-row>
     </v-footer>
   </v-app>
 </template>
+
+<style>
+* {
+  font-family: "Antonio", sans-serif;
+}
+</style>

@@ -53,7 +53,7 @@ const passwordRules = [
 </script>
 
 <template>
-  <v-card>
+  <v-card variant="text">
     <v-card-title class="text-center mb-4">ログイン</v-card-title>
     <v-row class="mx-4">
       <v-col>
@@ -82,6 +82,7 @@ const passwordRules = [
             type="submit"
             variant="elevated"
             block
+            disabled
           >
             ログインする
           </v-btn>
@@ -112,6 +113,7 @@ const passwordRules = [
           size="x-large"
           variant="outlined"
           @click="signInAsGoogle"
+          disabled
         >
           <nuxt-icon class="mr-2" name="google" filled />
           GOOGLEでログイン
