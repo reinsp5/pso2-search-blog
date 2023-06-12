@@ -6,10 +6,12 @@
       <v-card-title class="my-4 text-h4 font-weight-bold"
         >利用規約</v-card-title
       >
-      <v-card-content>
+      <v-card-text class="text-caption text-md-body-1">
         <v-row class="ma-8">
           <v-col>
-            この利用規約（以下、「本規約」といいます。）は、＿＿＿＿＿（以下、「当方」といいます。）がこのウェブサイト上で提供するサービス（以下、「本サービス」といいます。）の利用条件を定めるものです。登録ユーザーの皆さま（以下、「ユーザー」といいます。）には、本規約に従って、本サービスをご利用いただきます。
+            この利用規約（以下、「本規約」といいます。）は、PSO2サーチ（以下、「当方」といいます。）がこのウェブサイト上で提供するサービス（以下、「本サービス」といいます。）の利用条件を定めるものです。<br>
+            登録ユーザーの皆さま（以下、「ユーザー」といいます。）には、本規約に従って、本サービスをご利用いただきます。<br>
+            <div class="mt-4">なお、本サービスの利用登録をされた場合、本規約に同意したものとみなします。</div>
           </v-col>
         </v-row>
         <v-row class="ma-8">
@@ -73,7 +75,7 @@
 
         <v-row class="ma-8">
           <v-col>
-            <div class="text-h5 font-weight-bold">
+            <div class="text-h5 font-weight-bold mb-8">
               第４条（利用料金および支払方法）
             </div>
             本サービスの利用に際し、当方は一切の料金を請求いたしません。
@@ -82,7 +84,7 @@
 
         <v-row class="ma-8">
           <v-col>
-            <div class="text-h5 font-weight-bold">第５条（禁止事項）</div>
+            <div class="text-h5 font-weight-bold mb-8">第５条（禁止事項）</div>
             ユーザーは、本サービスの利用にあたり、以下の行為をしてはなりません。
             <ol>
               <li>法令または公序良俗に違反する行為</li>
@@ -94,7 +96,7 @@
                 当方、ほかのユーザー、またはその他第三者のサーバーまたはネットワークの機能を破壊したり、妨害したりする行為
               </li>
               <li>本サービスによって得られた情報を商業的に利用する行為</li>
-              <li>当方のサービスの運営を妨害するおそれのある行為</li>
+              <li>本サービスの運営を妨害するおそれのある行為</li>
               <li>不正アクセスをし、またはこれを試みる行為</li>
               <li>他のユーザーに関する個人情報等を収集または蓄積する行為</li>
               <li>不正な目的を持って本サービスを利用する行為</li>
@@ -107,7 +109,7 @@
               </li>
               <li>面識のない異性との出会いを目的とした行為</li>
               <li>
-                当方のサービスに関連して、反社会的勢力に対して直接または間接に利益を供与する行為
+                本サービスに関連して、反社会的勢力に対して直接または間接に利益を供与する行為
               </li>
               <li>その他、当方が不適切と判断する行為</li>
             </ol>
@@ -116,7 +118,7 @@
 
         <v-row class="ma-8">
           <v-col>
-            <div class="text-h5 font-weight-bold">
+            <div class="text-h5 font-weight-bold mb-8">
               第６条（本サービスの提供の停止等）
             </div>
             ユーザーは、本サービスの利用にあたり、以下の行為をしてはなりません。
@@ -171,7 +173,7 @@
 
         <v-row class="ma-8">
           <v-col>
-            <div class="text-h5 font-weight-bold">第８条（退会）</div>
+            <div class="text-h5 font-weight-bold mb-8">第８条（退会）</div>
             ユーザーは、当方の定める退会手続により、本サービスから退会できるものとします。
           </v-col>
         </v-row>
@@ -192,7 +194,7 @@
 
         <v-row class="ma-8">
           <v-col>
-            <div class="text-h5 font-weight-bold">
+            <div class="text-h5 font-weight-bold mb-8">
               第１０条（サービス内容の変更等）
             </div>
             当方は、ユーザーへの事前の告知をもって、本サービスの内容を変更、追加または廃止することがあり、ユーザーはこれを承諾するものとします。
@@ -217,16 +219,17 @@
 
         <v-row class="ma-8">
           <v-col>
-            <div class="text-h5 font-weight-bold">
+            <div class="text-h5 font-weight-bold mb-8">
               第１２条（個人情報の取扱い）
             </div>
-            当方は、本サービスの利用によって取得する個人情報については、当方「プライバシーポリシー」に従い適切に取り扱うものとします。
+            当方は、本サービスの利用によって個人情報を取得しません。<br>
+            当方「<NuxtLink to="/privacy">プライバシーポリシー</NuxtLink>」に従い、利用登録後のアカウントを管理するために必要な識別情報のみを取得します。
           </v-col>
         </v-row>
 
         <v-row class="ma-8">
           <v-col>
-            <div class="text-h5 font-weight-bold">
+            <div class="text-h5 font-weight-bold mb-8">
               第１３条（通知または連絡）
             </div>
             ユーザーと当方との間の通知または連絡は、当方の定める方法によって行うものとします。当方は,ユーザーから,当方が別途定める方式に従った変更届け出がない限り,現在登録されている連絡先が有効なものとみなして当該連絡先へ通知または連絡を行い,これらは,発信時にユーザーへ到達したものとみなします。
@@ -235,7 +238,7 @@
 
         <v-row class="ma-8">
           <v-col>
-            <div class="text-h5 font-weight-bold">
+            <div class="text-h5 font-weight-bold mb-8">
               第１４条（権利義務の譲渡の禁止）
             </div>
             ユーザーは、当方の書面による事前の承諾なく、利用契約上の地位または本規約に基づく権利もしくは義務を第三者に譲渡し、または担保に供することはできません。
@@ -254,9 +257,20 @@
           </v-col>
         </v-row>
         <div class="ma-12 text-h6 text-right">以上</div>
-      </v-card-content>
+      </v-card-text>
     </v-card>
   </v-container>
 </template>
 
-<style scoped></style>
+<style scoped>
+ol{
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 40px;
+}
+
+li {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+</style>

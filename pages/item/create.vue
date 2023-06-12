@@ -9,6 +9,8 @@ import {
   query,
   where,
   runTransaction,
+  getDoc,
+  doc,
 } from "firebase/firestore";
 import type { VForm } from "vuetify/lib/components/index.mjs";
 import { v4 as uuidv4 } from "uuid";
@@ -81,8 +83,14 @@ const createItem = async () => {
 
       // ユーザ情報を取得
       const user = getAuth().currentUser;
-      if (!user?.displayName) {
-        throw new Error("ユーザ名が未指定です");
+      if (!user) {
+        throw new Error("ユーザ情報が取得できませんでした。");
+      } else if (!user.uid) {
+        throw new Error("ユーザ情報が取得できませんでした。");
+      }
+      const userDoc = await getDoc(doc(store, "users", user.uid));
+      if (!userDoc.exists()) {
+        throw new Error("ユーザ情報が取得できませんでした。");
       }
 
       // ドキュメントを追加
@@ -99,8 +107,8 @@ const createItem = async () => {
           id: imageUploadURL.id,
           url: `https://imagedelivery.net/y6deFg4uWz5Imy5sDx3EYA/${imageUploadURL.id}/public`,
         },
-        create_user: user?.displayName,
-        update_user: user?.displayName,
+        create_user: userDoc.get("displayName") ?? "unknown",
+        update_user: userDoc.get("displayName") ?? "unknown",
         created_at: Timestamp.now(),
         updated_at: Timestamp.now(),
       });

@@ -1,58 +1,23 @@
 import {
-  signInWithEmailAndPassword,
   setPersistence,
   browserLocalPersistence,
   getAuth,
+  deleteUser,
   TwitterAuthProvider,
   signInWithPopup,
   GoogleAuthProvider,
-  createUserWithEmailAndPassword,
+  updateProfile,
+  updateEmail,
 } from "firebase/auth";
+import { getFirestore, setDoc, doc, deleteDoc } from "firebase/firestore";
 
 /**
  * ytScouterの認証用カスタムフック
  * @returns
  */
 export const useAuth = () => {
-  // ログイントークン
+  // エラー情報
   const loginError = useState<unknown | null>("loginError", () => null);
-
-  // メールアドレスでユーザ登録
-  const signUpMail = async (email: string, password: string) => {
-    try {
-      const auth = getAuth();
-      const userCredential = await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-      // ログイン永続化
-      await setPersistence(auth, browserLocalPersistence);
-      return navigateTo("/");
-    } catch (error: unknown) {
-      loginError.value = error;
-    }
-  };
-
-  // メールアドレスでログイン
-  const signInMail = async (email: string, password: string) => {
-    try {
-      const auth = getAuth();
-      const userCredential = await signInWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-      // ログイン永続化
-      await setPersistence(auth, browserLocalPersistence);
-      return navigateTo("/");
-    } catch (error: any) {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.error(errorMessage);
-      loginError.value = error;
-    }
-  };
 
   // Googleでログイン
   const signInGoogle = async () => {
@@ -60,6 +25,14 @@ export const useAuth = () => {
       const auth = getAuth();
       const provider = new GoogleAuthProvider();
       const userCredential = await signInWithPopup(auth, provider);
+
+      const store = getFirestore();
+      // ユーザー情報をfirestoreに保存
+      await setDoc(doc(store, "users", userCredential.user.uid), {
+        uid: userCredential.user.uid,
+        displayName: userCredential.user.displayName,
+      });
+
       // ログイン永続化
       await setPersistence(auth, browserLocalPersistence);
       return navigateTo("/");
@@ -67,8 +40,6 @@ export const useAuth = () => {
       // Handle Errors here.
       const errorCode = error.code;
       const errorMessage = error.message;
-      // The email of the user's account used.
-      const email = error.customData.email;
       // The AuthCredential type that was used.
       const credential = GoogleAuthProvider.credentialFromError(error);
       console.error(errorMessage);
@@ -82,6 +53,15 @@ export const useAuth = () => {
       const auth = getAuth();
       const provider = new TwitterAuthProvider();
       const userCredential = await signInWithPopup(auth, provider);
+
+      const store = getFirestore();
+
+      // ユーザー情報をfirestoreに保存
+      await setDoc(doc(store, "users", userCredential.user.uid), {
+        uid: userCredential.user.uid,
+        displayName: userCredential.user.displayName,
+      });
+
       // ログイン永続化
       await setPersistence(auth, browserLocalPersistence);
       return navigateTo("/");
@@ -89,12 +69,36 @@ export const useAuth = () => {
       // Handle Errors here.
       const errorCode = error.code;
       const errorMessage = error.message;
-      // The email of the user's account used.
-      const email = error.customData.email;
       // The AuthCredential type that was used.
       const credential = TwitterAuthProvider.credentialFromError(error);
       console.error(errorMessage);
       loginError.value = error;
+    }
+  };
+
+  // ユーザ情報の更新
+  const updateUser = async () => {
+    const auth = getAuth();
+    const displayName = useState<string>("update-displayName");
+    const email = useState<string>("update-email");
+    try {
+      const user = auth.currentUser;
+      if (user) {
+        // ユーザ名に変更があれば更新
+        if (displayName.value !== user.displayName) {
+          await updateProfile(user, { displayName: displayName.value });
+        }
+
+        // メールアドレスに変更があれば更新
+        if (email.value !== user.email) {
+          await updateEmail(user, email.value);
+        }
+      }
+
+      return true;
+    } catch (error: unknown) {
+      loginError.value = error;
+      return false;
     }
   };
 
@@ -109,12 +113,28 @@ export const useAuth = () => {
     }
   };
 
+  // ユーザー削除
+  const delUser = async () => {
+    const auth = getAuth();
+    const store = getFirestore();
+    try {
+      const user = auth.currentUser;
+      if (user) {
+        await deleteDoc(doc(store, "users", user.uid));
+        await deleteUser(user);
+        return navigateTo("/");
+      }
+    } catch (error: unknown) {
+      loginError.value = error;
+    }
+  };
+
   return {
     loginError,
-    signUpMail,
-    signInMail,
     signInTwitter,
     signInGoogle,
     signOut,
+    updateUser,
+    delUser,
   };
 };

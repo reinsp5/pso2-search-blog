@@ -7,5 +7,10 @@ service cloud.firestore {
       // サインインしているユーザーは、削除以外の操作が可能
       allow read, create, update: if request.auth.uid != null;
     }
+    match /users/{userId} {
+      allow read: if request.auth.uid == userId;
+      allow create: if request.auth.uid != null;
+      allow update, delete: if request.auth.uid == userId;
+    }
   }
 }
