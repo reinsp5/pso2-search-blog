@@ -101,8 +101,4 @@ const changeTheme = () => {
   </v-app>
 </template>
 
-<style>
-* {
-  font-family: "Antonio", sans-serif;
-}
-</style>
+<style></style>

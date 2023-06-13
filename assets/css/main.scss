@@ -1,1 +1,7 @@
 @use "vuetify/styles";
+
+@font-face {
+  font-family: "Roboto";
+  src: url("../fonts/LINESeedJP_OTF_Rg.woff2") format("woff2"),
+    url("../fonts/LINESeedJP_OTF_Rg.woff") format("woff");
+}

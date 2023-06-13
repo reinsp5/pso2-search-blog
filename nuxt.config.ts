@@ -13,7 +13,7 @@ const {
 
 export default defineNuxtConfig({
   ssr: false,
-  modules: ["nuxt-icons", "@nuxtjs/google-fonts"],
+  modules: ["nuxt-icons", "@nuxtjs/fontaine"],
   typescript: {
     strict: true,
     typeCheck: true,
@@ -41,12 +41,6 @@ export default defineNuxtConfig({
       pathPrefix: false,
     },
   ],
-  googleFonts: {
-    families: {
-      "BIZ+UDPGothic": true,
-      Antonio: true,
-    },
-  },
   experimental: {
     viewTransition: true,
   },

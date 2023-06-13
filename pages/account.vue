@@ -15,6 +15,9 @@ const form = ref<VForm | null>(null);
 // アラートの表示
 const alert = ref(false);
 
+// ローディングの表示
+const loading = ref(false);
+
 // ダイアログの表示
 const dialog = ref(false);
 
@@ -26,8 +29,10 @@ if (user) {
 
 // ユーザ情報の更新
 const updateUser = async () => {
+  loading.value = true;
   const { updateUser } = useAuth();
-  alert.value = await updateUser();
+  alert.value = await updateUser(displayName.value, email.value);
+  loading.value = false;
 };
 
 // サインアウト
@@ -85,7 +90,7 @@ const openDialog = () => {
           </v-card-title>
           <v-row>
             <v-col>
-              <v-form ref="" class="mx-8 mt-8">
+              <v-form ref="form" class="mx-8 mt-8" @submit.prevent="updateUser">
                 <v-text-field
                   v-model="displayName"
                   variant="outlined"
@@ -102,7 +107,7 @@ const openDialog = () => {
                   class="text-none mb-4"
                   size="x-large"
                   variant="flat"
-                  @click="updateUser"
+                  :loading="loading"
                 >
                   ユーザ情報更新
                 </v-btn>

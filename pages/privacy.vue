@@ -10,12 +10,12 @@
         <v-row class="ma-8">
           <v-col>
             本サービスの会員システムは、Google社のFirebase
-            Authenticationを使用しています。
-            従って、プライバシーポリシーは<NuxtLink
+            Authenticationを使用します。 Firebase
+            Authenticationのプライバシーポリシーは<NuxtLink
               to="https://firebase.google.com/support/privacy?hl=ja"
               >Firebase Authenticationのプライバシーポリシー</NuxtLink
-            >が適用されます。<br />
-            当方はユーザー様のユーザ名およびFirebase
+            >を御覧ください。<br />
+            当方は、ユーザ名およびFirebase
             Authenticationによってアカウントごとに割り当てられる固有識別子のみ閲覧可能であり、各OAuthアカウントの詳細なユーザ情報へはアクセスできません。
           </v-col>
         </v-row>
@@ -40,6 +40,25 @@
             </div>
             当サービスは、アイテム情報の登録／編集／削除を行うために利用登録が必要です。<br />
             利用登録の方法については、前項に記載したとおりです。<br />
+          </v-col>
+        </v-row>
+
+        <v-row class="ma-8">
+          <v-col>
+            <div class="text-h5 font-weight-bold mb-8">３．注意事項</div>
+            <ol>
+              <li>
+                OAuth認証（Twitter認証およびGoogle認証）によりログインした場合、ユーザ名の初期値はOAuth認証によって取得したユーザ名がそのまま利用されます。<br />
+                万が一、ユーザ名がご自身の本名など個人を特定できる情報になっている場合は、直ちにユーザ名を変更してください。<br />
+                ユーザ名の変更は、アカウント設定画面から行うことができます。<br />
+              </li>
+              <li>
+                ユーザー名を変更しても、過去に登録したアイテム情報には変更は反映されません。<br />
+              </li>
+              <li>
+                ユーザー名は、他のユーザーと重複しないようにしてください。<br />
+              </li>
+            </ol>
           </v-col>
         </v-row>
         <div class="ma-12 text-h6 text-right">以上</div>
