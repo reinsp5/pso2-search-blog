@@ -107,6 +107,7 @@ const openDialog = () => {
                   class="text-none mb-4"
                   size="x-large"
                   variant="flat"
+                  type="submit"
                   :loading="loading"
                 >
                   ユーザ情報更新

@@ -6,15 +6,20 @@ import {
   mdiAccountPlus,
   mdiWeatherSunny,
   mdiWeatherNight,
+  mdiAccount,
 } from "@mdi/js";
 import { useTheme } from "vuetify";
 import { MAIN_THEME, MAIN_DARK_THEME } from "@/helpers/themes";
+import { getAuth } from "firebase/auth";
 const drawer = ref(false);
 const darkMode = ref(false);
 const theme = useTheme();
 const changeTheme = () => {
   theme.global.name.value = darkMode.value ? MAIN_DARK_THEME : MAIN_THEME;
 };
+
+const { checkAuthState } = useAuth();
+const isSignedIn = await checkAuthState();
 </script>
 
 <template>
@@ -41,9 +46,31 @@ const changeTheme = () => {
       <v-list nav>
         <v-list-item :prepend-icon="mdiHome" title="ホーム" to="/" nuxt />
         <v-list-item
+          v-if="!isSignedIn"
+          :prepend-icon="mdiAccountPlus"
+          title="アカウント登録"
+          to="/signup"
+          nuxt
+        />
+        <v-list-item
+          v-if="!isSignedIn"
+          :prepend-icon="mdiLogin"
+          title="ログイン"
+          to="/signin"
+          nuxt
+        />
+        <v-list-item
+          v-if="isSignedIn"
           :prepend-icon="mdiHome"
           title="アイテム登録"
           to="/item/create"
+          nuxt
+        />
+        <v-list-item
+          v-if="isSignedIn"
+          :prepend-icon="mdiAccount"
+          title="アカウント"
+          to="/account"
           nuxt
         />
       </v-list>

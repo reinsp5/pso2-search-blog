@@ -8,6 +8,7 @@ import {
   GoogleAuthProvider,
   updateProfile,
   updateEmail,
+  onAuthStateChanged,
 } from "firebase/auth";
 import {
   getFirestore,
@@ -47,18 +48,18 @@ export const useAuth = () => {
         });
 
         // ユーザー名変更画面へ遷移
-        return navigateTo("/namechange");
+        return await navigateTo("/namechange");
       }
 
       // firestore上のユーザ情報で初回のユーザー名変更が完了しているか確認し、
       // 完了していなければユーザー名変更画面へ遷移
       if (!userDoc.data().firstDisplayNameChanged) {
         // ログイン永続化
-        return navigateTo("/namechange");
+        return await navigateTo("/namechange");
       }
 
       // それ以外の場合はトップページへ遷移
-      return navigateTo("/");
+      return await navigateTo("/");
     } catch (error: any) {
       // Handle Errors here.
       const errorCode = error.code;
@@ -92,18 +93,18 @@ export const useAuth = () => {
         });
 
         // ユーザー名変更画面へ遷移
-        return navigateTo("/namechange");
+        return await navigateTo("/namechange", { redirectCode: 301 });
       }
 
       // firestore上のユーザ情報で初回のユーザー名変更が完了しているか確認し、
       // 完了していなければユーザー名変更画面へ遷移
       if (!userDoc.data().firstDisplayNameChanged) {
         // ログイン永続化
-        return navigateTo("/namechange");
+        return await navigateTo("/namechange", { redirectCode: 301 });
       }
 
       // それ以外の場合はトップページへ遷移
-      return navigateTo("/");
+      return await navigateTo("/", { redirectCode: 301 });
     } catch (error: any) {
       // Handle Errors here.
       const errorCode = error.code;
@@ -199,6 +200,25 @@ export const useAuth = () => {
     }
   };
 
+  // ログイン状況の確認
+  const checkAuthState = async () => {
+    return await new Promise<boolean>((resolve, reject) => {
+      if (process.server) return resolve(false);
+      const auth = getAuth();
+      onAuthStateChanged(
+        auth,
+        (user) => {
+          if (user) {
+            resolve(true);
+          } else {
+            resolve(false);
+          }
+        },
+        (error) => reject(false)
+      );
+    });
+  };
+
   return {
     loginError,
     signInTwitter,
@@ -207,5 +227,6 @@ export const useAuth = () => {
     setUserNameFirst,
     updateUser,
     delUser,
+    checkAuthState,
   };
 };
