@@ -22,8 +22,11 @@ const loading = ref(false);
 const dialog = ref(false);
 
 const user = getAuth().currentUser;
+const { getUserDoc } = useAuth();
+const userDoc = await getUserDoc();
+const name = userDoc!.displayName;
 if (user) {
-  displayName.value = user.displayName ?? "";
+  displayName.value = name ?? "";
   email.value = user.email ?? "";
 }
 
@@ -102,7 +105,6 @@ const openDialog = () => {
                   label="メールアドレス"
                 />
                 <v-btn
-                  
                   block
                   color="primary"
                   class="text-md-h6 mb-4"

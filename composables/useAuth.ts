@@ -225,6 +225,23 @@ export const useAuth = () => {
     });
   };
 
+  // ユーザ情報の取得
+  const getUserDoc = async () => {
+    const auth = getAuth();
+    const store = getFirestore();
+    try {
+      const user = auth.currentUser;
+      if (user) {
+        const userDoc = await getDoc(doc(store, "users", user.uid));
+        if (userDoc.exists()) {
+          return userDoc.data();
+        }
+      }
+    } catch (error: unknown) {
+      loginError.value = error;
+    }
+  };
+
   return {
     loginError,
     signInTwitter,
@@ -234,6 +251,7 @@ export const useAuth = () => {
     updateUser,
     delUser,
     checkAuthState,
+    getUserDoc,
     isAuthed,
   };
 };
