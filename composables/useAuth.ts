@@ -25,6 +25,7 @@ import {
 export const useAuth = () => {
   // エラー情報
   const loginError = useState<unknown | null>("loginError", () => null);
+  const isAuthed = useState<boolean>("is-authened", () => false);
 
   // Googleでログイン
   const signInGoogle = async () => {
@@ -209,12 +210,17 @@ export const useAuth = () => {
         auth,
         (user) => {
           if (user) {
+            isAuthed.value = true;
             resolve(true);
           } else {
+            isAuthed.value = false;
             resolve(false);
           }
         },
-        (error) => reject(false)
+        (error) => {
+          isAuthed.value = false;
+          reject(false);
+        }
       );
     });
   };
@@ -228,5 +234,6 @@ export const useAuth = () => {
     updateUser,
     delUser,
     checkAuthState,
+    isAuthed,
   };
 };

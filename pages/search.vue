@@ -7,6 +7,7 @@ const searchResults = useState<Item[]>("search-result", () => []);
 
 const config = useRuntimeConfig();
 
+const darkMode = useState("dark-mode");
 const isCompositioning = ref(false);
 
 // IME入力開始
@@ -45,11 +46,13 @@ const search = async () => {
 <template>
   <v-container fluid>
     <v-row>
-      <v-col class="py-0" cols="12">
-        <span class="text-h5">検索</span>
+      <v-col align="start" class="py-0" cols="12">
+        <v-img class="mr-auto ml-0 text-start" v-if="!darkMode" height="48" src="/images/logo.svg" inline />
+        <v-img v-else height="48" src="/images/logo_dark.svg" inline />
       </v-col>
       <v-col cols="12" sm="10" md="8" lg="7" xl="5">
         <v-text-field
+        color="primary"
           :prepend-inner-icon="mdiMagnify"
           v-model="keyword"
           variant="outlined"

@@ -3,8 +3,8 @@ import { mdiMagnify } from "@mdi/js";
 import { Item } from "~/types/item";
 
 const keyword = ref("");
-const searchResults = useState<Item[]>('search-result', () => []);
-
+const searchResults = useState<Item[]>("search-result", () => []);
+const darkMode = useState("dark-mode");
 const config = useRuntimeConfig();
 
 const isCompositioning = ref(false);
@@ -50,10 +50,12 @@ const search = async () => {
   <v-container class="fill-height">
     <v-row align="center" justify="center">
       <v-col cols="12" align="center">
-        <span class="text-h4 text-md-h3">PSO2アイテム検索</span>
+        <v-img v-if="!darkMode" height="64" src="/images/logo.svg" />
+        <v-img v-else height="64" src="/images/logo_dark.svg" />
       </v-col>
       <v-col align="center" cols="12" lg="8" xl="5">
         <v-text-field
+          color="primary"
           :prepend-inner-icon="mdiMagnify"
           v-model="keyword"
           variant="outlined"

@@ -102,9 +102,10 @@ const openDialog = () => {
                   label="メールアドレス"
                 />
                 <v-btn
+                  
                   block
                   color="primary"
-                  class="text-none mb-4"
+                  class="text-md-h6 mb-4"
                   size="x-large"
                   variant="flat"
                   type="submit"
@@ -132,12 +133,24 @@ const openDialog = () => {
           <v-card-title> ログアウト／アカウントの削除 </v-card-title>
           <v-row>
             <v-col class="pa-8" cols="12" md="6">
-              <v-btn color="primary" block min-height="100px" @click="signOut">
+              <v-btn
+                class="text-md-h6"
+                color="primary"
+                block
+                min-height="100px"
+                @click="signOut"
+              >
                 ログアウト
               </v-btn>
             </v-col>
             <v-col class="pa-8" cols="12" md="6">
-              <v-btn color="error" block min-height="100px" @click="openDialog">
+              <v-btn
+                class="text-md-h6"
+                color="error"
+                block
+                min-height="100px"
+                @click="openDialog"
+              >
                 アカウント削除
               </v-btn>
             </v-col>

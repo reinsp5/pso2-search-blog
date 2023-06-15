@@ -42,7 +42,7 @@ const updateUser = async () => {
   // 1秒後にアラートを閉じてリダイレクト
   setTimeout(() => {
     alert.value = false;
-    navigateTo("/account");
+    navigateTo("/account", { replace: true });
   }, 1000);
 };
 </script>
@@ -106,7 +106,7 @@ const updateUser = async () => {
           </v-card-title>
           <v-row>
             <v-col class="ml-8" md="12">
-              <div class="text-caption text-body-1">
+              <div class="text-caption text-md-body-2">
                 ※ユーザー名が本名など個人情報を含む場合は、
                 <span class="font-weight-bold"> 必ず変更してください。 </span>
                 <br />
