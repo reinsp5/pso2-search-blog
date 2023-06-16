@@ -31,7 +31,6 @@ await checkAuthState();
       <template v-slot:append>
         <v-icon color="primary" :icon="mdiWeatherSunny" />
         <v-switch
-        
           v-model="darkMode"
           class="mx-2"
           color="success"
@@ -80,7 +79,14 @@ await checkAuthState();
     </v-main>
     <v-footer color="primary" app absolute>
       <v-row justify="center" no-gutters>
-        <v-btn color="secondary" variant="text" class="mx-2" rounded="xl" to="/" nav>
+        <v-btn
+          color="secondary"
+          variant="text"
+          class="mx-2"
+          rounded="xl"
+          to="/"
+          nav
+        >
           ホーム
         </v-btn>
         <v-btn
@@ -93,7 +99,14 @@ await checkAuthState();
         >
           アイテム登録
         </v-btn>
-        <v-btn color="secondary" variant="text" class="mx-2" rounded="xl" to="/terms" nav>
+        <v-btn
+          color="secondary"
+          variant="text"
+          class="mx-2"
+          rounded="xl"
+          to="/terms"
+          nav
+        >
           利用規約
         </v-btn>
         <v-btn
@@ -107,7 +120,7 @@ await checkAuthState();
           プライバシーポリシー
         </v-btn>
         <v-col class="text-center mt-4" cols="12">
-          {{ new Date().getFullYear() }} — <strong>PSO2 アイテム検索</strong>
+          {{ new Date().getFullYear() }} — <strong>PSO2 Search</strong>
         </v-col>
       </v-row>
     </v-footer>

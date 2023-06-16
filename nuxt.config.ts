@@ -59,7 +59,7 @@ export default defineNuxtConfig({
   },
   app: {
     head: {
-      title: "PSO2アイテムデータベース",
+      title: "PSO2 Search",
       htmlAttrs: {
         lang: "ja",
       },
