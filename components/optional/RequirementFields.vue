@@ -24,7 +24,7 @@ watch(
         type="number"
         label="必要最小Lv."
         variant="outlined"
-        density="comfortable"
+        density="compact"
         hide-details
       />
     </v-col>

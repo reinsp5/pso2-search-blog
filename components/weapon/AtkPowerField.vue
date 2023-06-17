@@ -30,7 +30,7 @@ watch(
         label="最小攻撃力"
         type="number"
         variant="outlined"
-        density="comfortable"
+        density="compact"
       />
     </v-col>
     <v-col>
@@ -42,7 +42,7 @@ watch(
         label="最大攻撃力"
         type="number"
         variant="outlined"
-        density="comfortable"
+        density="compact"
       />
     </v-col>
   </v-row>

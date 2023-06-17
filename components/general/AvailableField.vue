@@ -14,12 +14,14 @@ watch(
 </script>
 
 <template>
-  <v-textarea
-          v-model="available_at"
-          label="入手方法"
-          variant="outlined"
-          placeholder="入手方法は、改行単位で複数登録できます。"
-        />
+  <v-col cols="12">
+    <v-textarea
+      v-model="available_at"
+      label="入手方法"
+      variant="outlined"
+      placeholder="入手方法は、改行単位で複数登録できます。"
+    />
+  </v-col>
 </template>
 
 <style scoped></style>

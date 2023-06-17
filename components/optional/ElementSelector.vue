@@ -32,7 +32,7 @@ watch(
     label="属性"
     :items="items"
     variant="outlined"
-    density="comfortable"
+    density="compact"
     clearable
   />
 </template>

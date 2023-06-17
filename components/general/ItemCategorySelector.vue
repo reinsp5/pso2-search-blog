@@ -18,19 +18,20 @@ const items: string[] = [
 
 // 必須入力チェック
 const required = (v: string) => !!v || "必ず入力してください";
-
 </script>
 
 <template>
-  <v-select
-    v-model="itemInfo.category"
-    class="mt-4"
-    label="カテゴリー"
-    :items="items"
-    variant="outlined"
-    density="comfortable"
-    :rules="[required]"
-  ></v-select>
+  <v-col cols="12">
+    <v-select
+      v-model="itemInfo.category"
+      class="mt-4"
+      label="カテゴリー"
+      :items="items"
+      variant="outlined"
+      density="compact"
+      :rules="[required]"
+    />
+  </v-col>
 </template>
 
 <style scoped></style>

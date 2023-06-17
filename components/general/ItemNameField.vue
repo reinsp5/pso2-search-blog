@@ -11,15 +11,17 @@ const limitLength = (v: string) =>
 </script>
 
 <template>
+  <v-col cols="12">
   <v-text-field
     v-model="itemInfo.name"
     class="mt-4"
     label="アイテム名"
     variant="outlined"
-    density="comfortable"
+    density="compact"
     :rules="[required, limitLength]"
     counter="20"
   />
+</v-col>
 </template>
 
 <style scoped></style>

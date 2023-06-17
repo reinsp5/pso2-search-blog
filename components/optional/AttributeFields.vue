@@ -41,7 +41,7 @@ watch(
           type="number"
           label="打撃上昇"
           variant="outlined"
-          density="comfortable"
+          density="compact"
           hide-details
         />
       </v-col>
@@ -52,7 +52,7 @@ watch(
           type="number"
           label="射撃上昇"
           variant="outlined"
-          density="comfortable"
+          density="compact"
           hide-details
         />
       </v-col>
@@ -63,7 +63,7 @@ watch(
           type="number"
           label="法撃上昇"
           variant="outlined"
-          density="comfortable"
+          density="compact"
           hide-details
         />
       </v-col>
@@ -78,7 +78,7 @@ watch(
           type="number"
           label="ＨＰ上昇"
           variant="outlined"
-          density="comfortable"
+          density="compact"
           hide-details
         />
       </v-col>
@@ -89,7 +89,7 @@ watch(
           type="number"
           label="ＰＰ上昇"
           variant="outlined"
-          density="comfortable"
+          density="compact"
           hide-details
         />
       </v-col>
@@ -110,7 +110,7 @@ watch(
           type="number"
           label="ダメージ耐性"
           variant="outlined"
-          density="comfortable"
+          density="compact"
           hide-details
         />
       </v-col>
@@ -121,7 +121,7 @@ watch(
           type="number"
           label="炎耐性"
           variant="outlined"
-          density="comfortable"
+          density="compact"
           hide-details
         />
       </v-col>
@@ -132,7 +132,7 @@ watch(
           type="number"
           label="氷耐性"
           variant="outlined"
-          density="comfortable"
+          density="compact"
           hide-details
         />
       </v-col>
@@ -147,7 +147,7 @@ watch(
           type="number"
           label="雷耐性"
           variant="outlined"
-          density="comfortable"
+          density="compact"
           hide-details
         />
       </v-col>
@@ -158,7 +158,7 @@ watch(
           type="number"
           label="風耐性"
           variant="outlined"
-          density="comfortable"
+          density="compact"
           hide-details
         />
       </v-col>
@@ -169,7 +169,7 @@ watch(
           type="number"
           label="光耐性"
           variant="outlined"
-          density="comfortable"
+          density="compact"
           hide-details
         />
       </v-col>
@@ -184,7 +184,7 @@ watch(
           type="number"
           label="闇耐性"
           variant="outlined"
-          density="comfortable"
+          density="compact"
           hide-details
         />
       </v-col>
@@ -195,7 +195,7 @@ watch(
           type="number"
           label="ペイン耐性"
           variant="outlined"
-          density="comfortable"
+          density="compact"
           hide-details
         />
       </v-col>
@@ -206,7 +206,7 @@ watch(
           type="number"
           label="環境耐性"
           variant="outlined"
-          density="comfortable"
+          density="compact"
           hide-details
         />
       </v-col>

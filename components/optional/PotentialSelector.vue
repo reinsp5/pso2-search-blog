@@ -81,7 +81,7 @@ watch(
     :items="items"
     :rules="[required]"
     variant="outlined"
-    density="comfortable"
+    density="compact"
     multiple
   />
 </template>

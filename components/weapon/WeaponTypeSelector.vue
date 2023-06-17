@@ -49,7 +49,7 @@ const required = (v: string) =>
     label="武器種"
     :items="items"
     variant="outlined"
-    density="comfortable"
+    density="compact"
     :rules="[required]"
   ></v-select>
 </template>
