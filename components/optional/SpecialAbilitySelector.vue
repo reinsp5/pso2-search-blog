@@ -36,8 +36,8 @@ watch(
 </script>
 
 <template>
+  <v-col v-if="!hiddenForm" cols="12">
   <v-select
-    v-if="!hiddenForm"
     v-model="special_abilities"
     class="mt-4"
     label="特殊能力"
@@ -47,6 +47,7 @@ watch(
     density="compact"
     multiple
   />
+</v-col>
 </template>
 
 <style scoped></style>

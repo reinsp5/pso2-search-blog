@@ -25,6 +25,7 @@ const itemInfo = useInsertItemInfo();
 
 // アイテムフォーム
 const itemCreateForm = ref<VForm | null>(null);
+const images = useState<File[]>("preview-images");
 
 // ローディング
 const loading = ref(false);
@@ -113,9 +114,15 @@ const createItem = async () => {
         updated_at: Timestamp.now(),
       });
     });
+    // <<トランザクション終了>>
+
+    // フォームをリセット
+    itemCreateForm.value.reset();
+    previewUrl.value = "";
+    images.value = [];
   } catch (e: unknown) {
     if (e instanceof Error) {
-      alert(e.message);
+      console.error(e.message);
     }
   } finally {
     loading.value = false;
@@ -127,7 +134,7 @@ const createItem = async () => {
   <v-container class="h-100">
     <v-row class="h-100" align="center">
       <v-col>
-        <v-card class="mx-auto px-6 py-8" variant="flat" max-width="720">
+        <v-card class="mx-auto" variant="flat" max-width="720">
           <v-card-title class="d-flex align-center justify-center text-h5">
             アイテム登録
           </v-card-title>

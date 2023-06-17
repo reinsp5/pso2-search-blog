@@ -33,7 +33,7 @@ watch(
   (newVal) => {
     // カテゴリーが「武器」以外のときは表示しない
     hiddenForm.value = newVal !== "武器";
-  },
+  }
 );
 
 // 表示中のときは必須入力チェック
@@ -42,16 +42,18 @@ const required = (v: string) =>
 </script>
 
 <template>
-  <v-select
-    v-if="!hiddenForm"
-    v-model="itemInfo.weapon_type"
-    class="mt-4"
-    label="武器種"
-    :items="items"
-    variant="outlined"
-    density="compact"
-    :rules="[required]"
-  ></v-select>
+  <v-col cols="12">
+    <v-select
+      v-if="!hiddenForm"
+      v-model="itemInfo.weapon_type"
+      class="mt-4"
+      label="武器種"
+      :items="items"
+      variant="outlined"
+      density="compact"
+      :rules="[required]"
+    />
+  </v-col>
 </template>
 
 <style scoped></style>

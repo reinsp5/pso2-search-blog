@@ -42,17 +42,19 @@ watch(
 </script>
 
 <template>
-  <v-select
-    v-if="!hiddenForm"
-    v-model="itemInfo.mountable_weapon_types"
-    class="mt-4"
-    label="適用可能武器種"
-    :items="items"
-    :rules="[required]"
-    variant="outlined"
-    density="compact"
-    multiple
-  />
+  <v-col cols="12">
+    <v-select
+      v-if="!hiddenForm"
+      v-model="itemInfo.mountable_weapon_types"
+      class="mt-4"
+      label="適用可能武器種"
+      :items="items"
+      :rules="[required]"
+      variant="outlined"
+      density="compact"
+      multiple
+    />
+  </v-col>
 </template>
 
 <style scoped></style>

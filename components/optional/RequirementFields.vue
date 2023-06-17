@@ -16,19 +16,17 @@ watch(
 </script>
 
 <template>
-  <v-row v-if="!hiddenForm">
-    <v-col>
-      <v-text-field
-        :model-value="itemInfo.requirement.min_level"
-        @update:model-value="itemInfo.requirement.min_level = Number($event)"
-        type="number"
-        label="必要最小Lv."
-        variant="outlined"
-        density="compact"
-        hide-details
-      />
-    </v-col>
-  </v-row>
+  <v-col v-if="!hiddenForm" cols="12">
+    <v-text-field
+      :model-value="itemInfo.requirement.min_level"
+      @update:model-value="itemInfo.requirement.min_level = Number($event)"
+      type="number"
+      label="必要最小Lv."
+      variant="outlined"
+      density="compact"
+      hide-details
+    />
+  </v-col>
 </template>
 
 <style scoped></style>

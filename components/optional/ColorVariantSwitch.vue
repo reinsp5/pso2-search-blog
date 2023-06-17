@@ -13,21 +13,18 @@ watch(
     hiddenForm.value = newVal !== "武器";
   }
 );
-
 </script>
 
 <template>
-  <v-row v-if="!hiddenForm">
-    <v-col>
-      <v-switch
-        v-model="itemInfo.color_variant"
-        color="success"
-        :label="`カラー変更: ${itemInfo.color_variant ? '可能' : '不可'}`"
-        hide-details
-        inset
-      />
-    </v-col>
-  </v-row>
+  <v-col v-if="!hiddenForm" cols="12">
+    <v-switch
+      v-model="itemInfo.color_variant"
+      color="success"
+      :label="`カラー変更: ${itemInfo.color_variant ? '可能' : '不可'}`"
+      hide-details
+      inset
+    />
+  </v-col>
 </template>
 
 <style scoped></style>

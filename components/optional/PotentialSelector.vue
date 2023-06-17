@@ -68,22 +68,23 @@ watch(
   (newVal) => {
     // カテゴリーが「武器」以外のときは表示しない
     hiddenForm.value = newVal !== "武器";
-  },
+  }
 );
 </script>
 
 <template>
-  <v-select
-    v-if="!hiddenForm"
-    v-model="potentials"
-    class="mt-4"
-    label="潜在能力"
-    :items="items"
-    :rules="[required]"
-    variant="outlined"
-    density="compact"
-    multiple
-  />
+  <v-col v-if="!hiddenForm" cols="12">
+    <v-select
+      v-model="potentials"
+      class="mt-4"
+      label="潜在能力"
+      :items="items"
+      :rules="[required]"
+      variant="outlined"
+      density="compact"
+      multiple
+    />
+  </v-col>
 </template>
 
 <style scoped></style>

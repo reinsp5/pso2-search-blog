@@ -20,32 +20,30 @@ watch(
 </script>
 
 <template>
-  <v-row v-if="!hiddenForm">
-    <v-col>
-      <v-text-field
-        :rules="[required]"
-        :model-value="itemInfo.atk_power_min"
-        @update:model-value="itemInfo.atk_power_min = Number($event)"
-        class="mt-4"
-        label="最小攻撃力"
-        type="number"
-        variant="outlined"
-        density="compact"
-      />
-    </v-col>
-    <v-col>
-      <v-text-field
+  <v-col v-if="!hiddenForm" cols="6">
+    <v-text-field
       :rules="[required]"
-        :model-value="itemInfo.atk_power_max"
-        @update:model-value="itemInfo.atk_power_max = Number($event)"
-        class="mt-4"
-        label="最大攻撃力"
-        type="number"
-        variant="outlined"
-        density="compact"
-      />
-    </v-col>
-  </v-row>
+      :model-value="itemInfo.atk_power_min"
+      @update:model-value="itemInfo.atk_power_min = Number($event)"
+      class="mt-4 mr-2"
+      label="最小攻撃力"
+      type="number"
+      variant="outlined"
+      density="compact"
+    />
+  </v-col>
+  <v-col v-if="!hiddenForm" cols="6">
+    <v-text-field
+      :rules="[required]"
+      :model-value="itemInfo.atk_power_max"
+      @update:model-value="itemInfo.atk_power_max = Number($event)"
+      class="mt-4 ml-2"
+      label="最大攻撃力"
+      type="number"
+      variant="outlined"
+      density="compact"
+    />
+  </v-col>
 </template>
 
 <style scoped></style>

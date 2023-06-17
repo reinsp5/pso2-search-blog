@@ -10,7 +10,7 @@ const limitSize = (v: any) => {
   );
 };
 
-const images = ref<File[]>([]);
+const images = useState<File[]>("preview-images", () => []);
 const previewUrl = useState<string>("preview-url", () => "");
 const preview = () => {
   if (!images.value.length) {
@@ -71,7 +71,7 @@ const preview = () => {
       @update:model-value="preview"
     />
   </v-col>
-  <v-col cols="12" md="6">
+  <v-col align="center" cols="12" md="6">
     <v-img
       v-if="images.length"
       :src="previewUrl"

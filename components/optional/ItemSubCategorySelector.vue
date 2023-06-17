@@ -17,26 +17,26 @@ watch(
     switch (newVal) {
       case "キャラクタークリエイト":
         hiddenForm.value = false;
-        items = characterCreateCategories;
+        items.value = characterCreateCategories;
         break;
       case "クリエイティブスペース":
         hiddenForm.value = false;
-        items = creativeSpaceItems;
+        items.value = creativeSpaceItems;
         break;
       case "消費アイテム":
         hiddenForm.value = false;
-        items = consumableItems;
+        items.value = consumableItems;
         break;
       default:
         hiddenForm.value = true;
-        items = [];
+        items.value = [];
         break;
     }
   }
 );
 
 // 選択肢
-let items: string[] = [];
+const items = ref<string[]>([]);
 
 const characterCreateCategories = [
   "顔",
@@ -87,16 +87,17 @@ const consumableItems = [
 </script>
 
 <template>
-  <v-select
-    v-if="!hiddenForm"
-    v-model="itemInfo.sub_category"
-    class="mt-4"
-    label="サブカテゴリー"
-    :items="items"
-    :rules="[required]"
-    variant="outlined"
-    density="compact"
-  />
+  <v-col v-if="!hiddenForm" cols="12">
+    <v-select
+      v-model="itemInfo.sub_category"
+      class="mt-4"
+      label="サブカテゴリー"
+      :items="items"
+      :rules="[required]"
+      variant="outlined"
+      density="compact"
+    />
+  </v-col>
 </template>
 
 <style scoped></style>
