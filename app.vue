@@ -7,6 +7,7 @@ import {
   mdiWeatherSunny,
   mdiWeatherNight,
   mdiAccount,
+  mdiPlusBox,
 } from "@mdi/js";
 import { useTheme } from "vuetify";
 import { MAIN_THEME, MAIN_DARK_THEME } from "@/helpers/themes";
@@ -60,7 +61,7 @@ await checkAuthState();
         />
         <v-list-item
           v-if="isAuthed"
-          :prepend-icon="mdiHome"
+          :prepend-icon="mdiPlusBox"
           title="アイテム登録"
           to="/item/create"
           nuxt
