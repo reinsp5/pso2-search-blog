@@ -9,32 +9,6 @@ const hiddenForm = ref(true);
 const required = (v: string) =>
   (hiddenForm.value ? true : !!v) || "必ず入力してください";
 
-// カテゴリフィールドの変化を監視する
-watch(
-  () => itemInfo.value.category,
-  (newVal) => {
-    // カテゴリによって表示するフォームを切り替える
-    switch (newVal) {
-      case "キャラクタークリエイト":
-        hiddenForm.value = false;
-        items.value = characterCreateCategories;
-        break;
-      case "クリエイティブスペース":
-        hiddenForm.value = false;
-        items.value = creativeSpaceItems;
-        break;
-      case "消費アイテム":
-        hiddenForm.value = false;
-        items.value = consumableItems;
-        break;
-      default:
-        hiddenForm.value = true;
-        items.value = [];
-        break;
-    }
-  }
-);
-
 // 選択肢
 const items = ref<string[]>([]);
 
@@ -84,6 +58,33 @@ const consumableItems = [
   "マイショップアイテム",
   "その他",
 ];
+
+// カテゴリフィールドの変化を監視する
+watch(
+  () => itemInfo.value.category,
+  (newVal) => {
+    // カテゴリによって表示するフォームを切り替える
+    switch (newVal) {
+      case "キャラクタークリエイト":
+        hiddenForm.value = false;
+        items.value = characterCreateCategories;
+        break;
+      case "クリエイティブスペース":
+        hiddenForm.value = false;
+        items.value = creativeSpaceItems;
+        break;
+      case "消費アイテム":
+        hiddenForm.value = false;
+        items.value = consumableItems;
+        break;
+      default:
+        hiddenForm.value = true;
+        items.value = [];
+        break;
+    }
+  },
+  { immediate: true }
+);
 </script>
 
 <template>

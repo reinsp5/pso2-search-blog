@@ -17,28 +17,21 @@ const items = [
   "セズン・セクンダアニバフィーヴ",
 ];
 
-const special_abilities = ref<string[]>([]);
-watch(
-  () => special_abilities.value,
-  (newVal) => {
-    itemInfo.value.special_abilities = newVal;
-  }
-);
-
 // カテゴリフィールドの変化を監視する
 watch(
   () => itemInfo.value.category,
   (newVal) => {
     // カテゴリーが「武器」以外のときは表示しない
     hiddenForm.value = newVal !== "武器";
-  }
+  },
+  { immediate: true }
 );
 </script>
 
 <template>
   <v-col v-if="!hiddenForm" cols="12">
   <v-select
-    v-model="special_abilities"
+    v-model="itemInfo.special_abilities"
     class="mt-4"
     label="特殊能力"
     :items="items"

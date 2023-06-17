@@ -54,13 +54,13 @@ const items = [
   "蹂躙の型",
 ];
 
-const potentials = ref<string[]>([]);
-watch(
-  () => potentials.value,
-  (newVal) => {
-    itemInfo.value.potentials = newVal;
-  }
-);
+// const potentials = ref<string[]>([]);
+// watch(
+//   () => potentials.value,
+//   (newVal) => {
+//     itemInfo.value.potentials = newVal;
+//   }
+// );
 
 // カテゴリフィールドの変化を監視する
 watch(
@@ -68,14 +68,15 @@ watch(
   (newVal) => {
     // カテゴリーが「武器」以外のときは表示しない
     hiddenForm.value = newVal !== "武器";
-  }
+  },
+  { immediate: true }
 );
 </script>
 
 <template>
   <v-col v-if="!hiddenForm" cols="12">
     <v-select
-      v-model="potentials"
+      v-model="itemInfo.potentials"
       class="mt-4"
       label="潜在能力"
       :items="items"

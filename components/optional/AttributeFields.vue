@@ -16,17 +16,18 @@ watch(
   (newVal) => {
     // カテゴリーが「武器」か「防具」以外のときは表示しない
     hiddenForm.value = newVal !== "防具";
-  }
+  },
+  { immediate: true }
 );
 
 // 属性フィールドの変化を監視する
-const attributes = reactive<Attribute>(new Attribute());
-watch(
-  () => ({ ...attributes }),
-  (newVal) => {
-    itemInfo.value.attribute = newVal;
-  }
-);
+// const attributes = reactive<Attribute>(new Attribute());
+// watch(
+//   () => ({ ...attributes }),
+//   (newVal) => {
+//     itemInfo.value.attribute = newVal;
+//   }
+// );
 </script>
 
 <template>

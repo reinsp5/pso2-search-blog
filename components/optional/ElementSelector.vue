@@ -13,7 +13,8 @@ watch(
   (newVal) => {
     // カテゴリーが「武器」以外のときは表示しない
     hiddenForm.value = newVal !== "武器";
-  }
+  },
+  { immediate: true }
 );
 </script>
 
