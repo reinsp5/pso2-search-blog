@@ -1,11 +1,15 @@
 <script lang="ts" setup>
-import { mdiCheckCircle, mdiCloseCircle } from "@mdi/js";
+import { mdiCheckCircle, mdiCloseCircle, mdiFileEditOutline } from "@mdi/js";
+import { doc } from "firebase/firestore";
 import { Item } from "~/types/item";
 
 const config = useRuntimeConfig();
 
-let item = ref(new Item());
+const { isAuthed } = useAuth();
+
+const item = ref(new Item());
 const itemId = useRoute().params.id as string;
+const docUid = ref("");
 const response = await fetch(
   "https://search.reinsp5.com/indexes/pso2-items/search",
   {
@@ -20,6 +24,7 @@ const response = await fetch(
   }
 );
 const json = await response.json();
+console.log(json);
 item.value = (json.hits[0] as Item) || new Item();
 
 const stars = Array(item.value.rarity).fill("★");
@@ -199,6 +204,19 @@ const getClass = (index: number) => {
           </v-row>
         </v-col>
       </v-row>
+      <v-card-actions v-if="isAuthed">
+        <v-row no-gutters>
+          <v-col align="end">
+            <v-btn
+              variant="flat"
+              :prepend-icon="mdiFileEditOutline"
+              :to="`/item/edit/${itemId}`"
+            >
+              編集する
+            </v-btn>
+          </v-col>
+        </v-row>
+      </v-card-actions>
     </v-card>
   </v-container>
 </template>
