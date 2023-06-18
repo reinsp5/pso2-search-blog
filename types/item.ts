@@ -32,6 +32,7 @@ export class Item {
   color_variant: boolean = false;
   cover_image_url: ImageInfo = new ImageInfo();
   other_image_urls: ImageInfo[] = [];
+
 }
 
 /**
@@ -72,3 +73,36 @@ export class ImageInfo {
   id: string = "";
   url: string = "";
 }
+
+export const mapItem = (item: Item): Item => {
+  return {
+    id: item.id,
+    name: item.name,
+    category: item.category,
+    rarity: item.rarity,
+    tradeable: item.tradeable,
+    pso2_revival: item.pso2_revival,
+    available_at: item.available_at,
+    tags: item.tags,
+    create_user: item.create_user,
+    update_user: item.update_user,
+    created_at: item.created_at,
+    updated_at: item.updated_at,
+    sub_category: item.sub_category,
+    weapon_type: item.weapon_type,
+    element: item.element,
+    requirement: item.requirement,
+    atk_power_min: item.atk_power_min,
+    atk_power_max: item.atk_power_max,
+    def_power_min: item.def_power_min,
+    def_power_max: item.def_power_max,
+    attribute: item.attribute,
+    special_abilities: item.special_abilities,
+    potentials: item.potentials,
+    mountable_weapon_types: item.mountable_weapon_types,
+    hidden_decoration: item.hidden_decoration,
+    color_variant: item.color_variant,
+    cover_image_url: item.cover_image_url,
+    other_image_urls: item.other_image_urls,
+  };
+};

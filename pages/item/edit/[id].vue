@@ -2,7 +2,7 @@
 import { getAuth } from "firebase/auth";
 import { doc, getDoc, runTransaction, Timestamp } from "firebase/firestore";
 import type { VForm } from "vuetify/lib/components/index.mjs";
-import { Item } from "~/types/item";
+import { Item, mapItem } from "~/types/item";
 
 // 認証必須
 definePageMeta({
@@ -18,7 +18,7 @@ const item = ref(new Item());
 // URLクエリからアイテムIDを取得
 const itemId = useRoute().params.id as string;
 const docUid = ref("");
-console.log(itemId);
+
 // アイテム情報の取得
 const itemDoc = async () => {
   const response = await fetch(
@@ -35,9 +35,8 @@ const itemDoc = async () => {
     }
   );
   const json = await response.json();
-  console.log(json);
   docUid.value = json.hits[0]._firestore_id;
-  itemInfo.value = (json.hits[0] as Item) || new Item();
+  itemInfo.value = mapItem(json.hits[0]) || new Item();
 };
 
 await itemDoc();
@@ -105,7 +104,6 @@ const createItem = async () => {
     // フォームをリセット
     itemCreateForm.value.reset();
     itemInfo.value = new Item();
-    
   } catch (e: unknown) {
     if (e instanceof Error) {
       console.error(e.message);
