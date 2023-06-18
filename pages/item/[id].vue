@@ -24,12 +24,9 @@ const response = await fetch(
   }
 );
 const json = await response.json();
-console.log(json);
 item.value = (json.hits[0] as Item) || new Item();
 
 const stars = Array(item.value.rarity).fill("★");
-console.log(item.value.rarity);
-console.log(stars);
 const getClass = (index: number) => {
   // 3つごとに色を変える
   if (index < 3) {
