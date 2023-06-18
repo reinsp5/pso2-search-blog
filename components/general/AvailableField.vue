@@ -3,7 +3,7 @@
 const itemInfo = useInsertItemInfo();
 
 // 入手場所
-const available_at = ref("");
+const available_at = ref(itemInfo.value.available_at.join("\n"));
 watch(
   available_at,
   (newVal) => {
