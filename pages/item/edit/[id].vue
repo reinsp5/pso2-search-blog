@@ -48,7 +48,6 @@ const loading = ref(false);
 
 // 登録する
 const createItem = async () => {
-  console.log(itemInfo.value);
   loading.value = true;
   if (!itemCreateForm.value) {
     loading.value = false;
@@ -87,7 +86,6 @@ const createItem = async () => {
       }
 
       // ドキュメントを更新する
-      console.log(itemInfo.value);
       transaction.update(updateDocRef, {
         ...itemInfo.value,
         requirement: {
