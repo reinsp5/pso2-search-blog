@@ -13,7 +13,6 @@ definePageMeta({
 const itemInfo = useInsertItemInfo();
 
 const config = useRuntimeConfig();
-const item = ref(new Item());
 
 // URLクエリからアイテムIDを取得
 const itemId = useRoute().params.id as string;
@@ -49,6 +48,7 @@ const loading = ref(false);
 
 // 登録する
 const createItem = async () => {
+  console.log(itemInfo.value);
   loading.value = true;
   if (!itemCreateForm.value) {
     loading.value = false;
@@ -68,7 +68,7 @@ const createItem = async () => {
     await runTransaction($store, async (transaction) => {
       // 更新対象のドキュメントを取得する
       const sfDoc = await transaction.get(updateDocRef);
-
+      
       // 既に登録されている場合はエラー
       if (!sfDoc.exists()) {
         throw new Error("アイテムが存在しません！");
@@ -87,6 +87,7 @@ const createItem = async () => {
       }
 
       // ドキュメントを更新する
+      console.log(itemInfo.value);
       transaction.update(updateDocRef, {
         ...itemInfo.value,
         requirement: {
