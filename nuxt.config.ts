@@ -97,6 +97,14 @@ export default defineNuxtConfig({
           content: "#ffffff",
         },
         {
+          name: "twitter:card",
+          content: "summary_large_image",
+        },
+        {
+          name: "twitter:site",
+          content: "@reinsp5",
+        },
+        {
           property: "og:type",
           content: "website",
         },
@@ -106,7 +114,7 @@ export default defineNuxtConfig({
         },
         {
           property: "og:image",
-          content: "/images/ogp.webp",
+          content: "https://pso2-search.com/images/ogp.webp",
         },
       ],
     },
