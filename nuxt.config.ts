@@ -12,7 +12,17 @@ const {
 } = process.env;
 
 export default defineNuxtConfig({
-  // ssr: false,
+  ssr: false,
+  nitro: {
+    preset: "cloudflare-pages",
+    externals: {
+      external: ["fabric","canvas", "canvas-prebuilt"],
+    },
+  },
+  routeRules: {
+    "/item/create": { ssr: false },
+    "/item/edit/:id": { ssr: false },
+  },
   modules: ["nuxt-icons", "@nuxtjs/fontaine"],
   typescript: {
     strict: true,
@@ -107,7 +117,7 @@ export default defineNuxtConfig({
         {
           property: "og:image",
           content: "/images/ogp.webp",
-        }
+        },
       ],
     },
   },
