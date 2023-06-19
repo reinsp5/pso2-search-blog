@@ -13,16 +13,6 @@ const {
 
 export default defineNuxtConfig({
   ssr: false,
-  nitro: {
-    preset: "cloudflare-pages",
-    externals: {
-      external: ["fabric","canvas", "canvas-prebuilt"],
-    },
-  },
-  routeRules: {
-    "/item/create": { ssr: false },
-    "/item/edit/:id": { ssr: false },
-  },
   modules: ["nuxt-icons", "@nuxtjs/fontaine"],
   typescript: {
     strict: true,
