@@ -55,12 +55,12 @@ const signUpAsGoogle = async () => {
       </v-col>
     </v-row>
     <v-row>
-      <v-col class="ma-4 text-center">
+      <v-col align="center" class="ma-4">
         <NuxtLink to="/signin">
           ログインはこちら
         </NuxtLink>
       </v-col>
-      <v-col class="ma-4 text-center">
+      <v-col align="center" class="ma-4">
         <NuxtLink to="/terms">
           利用規約はこちら
         </NuxtLink>

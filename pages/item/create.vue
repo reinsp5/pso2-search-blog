@@ -130,6 +130,10 @@ const createItem = async () => {
     loading.value = false;
   }
 };
+
+useHead({
+  title: "アイテム情報登録 | PSO2 Search Unofficial Item Search Engine",
+});
 </script>
 
 <template>

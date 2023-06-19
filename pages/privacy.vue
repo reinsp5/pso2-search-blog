@@ -1,4 +1,12 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+useHead({
+  title: "プライバシーポリシー | PSO2 Search Unofficial Item Search Engine",
+  meta: [
+    { property: "og:title", content: "プライバシーポリシー | PSO2 Search Unofficial Item Search Engine" },
+    { property: "og:description", content: "PSO2 Searchにアイテム登録を行うためにアカウントを作成する際のプライバシーポリシーです。" },
+  ],
+});
+</script>
 
 <template>
   <v-container class="w-100 d-flex align-center justify-center">

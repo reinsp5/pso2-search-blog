@@ -111,6 +111,10 @@ const createItem = async () => {
     loading.value = false;
   }
 };
+
+useHead({
+  title: "アイテム情報編集 | PSO2 Search Unofficial Item Search Engine",
+});
 </script>
 
 <template>
@@ -119,7 +123,7 @@ const createItem = async () => {
       <v-col>
         <v-card class="mx-auto" variant="flat" max-width="720">
           <v-card-title class="d-flex align-center justify-center text-h5">
-            アイテム登録
+            アイテム編集
           </v-card-title>
           <v-form
             ref="itemCreateForm"

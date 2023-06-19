@@ -43,6 +43,10 @@ const getClass = (index: number) => {
     return "purple";
   }
 };
+
+useHead({
+  title: `${item.value.name} | PSO2 Search Unofficial Item Search Engine`,
+});
 </script>
 
 <template>

@@ -45,6 +45,10 @@ const updateUser = async () => {
     navigateTo("/account", { replace: true });
   }, 1000);
 };
+
+useHead({
+  title: "初回ユーザ名変更 | PSO2 Search Unofficial Item Search Engine",
+});
 </script>
 
 <template>

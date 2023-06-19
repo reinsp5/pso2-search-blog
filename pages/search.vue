@@ -41,6 +41,14 @@ const search = async () => {
   const json = await response.json();
   searchResults.value = json.hits as Item[];
 };
+
+useHead({
+  title: "検索ページ | PSO2 Search Unofficial Item Search Engine",
+  meta: [
+    { property: "og:title", content: "検索ページ | PSO2 Search Unofficial Item Search Engine" },
+    { property: "og:description", content: "PSO2 Searchの検索フォームです。" },
+  ],
+});
 </script>
 
 <template>

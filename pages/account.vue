@@ -54,6 +54,10 @@ const delUser = async () => {
 const openDialog = () => {
   dialog.value = true;
 };
+
+useHead({
+  title: "アカウントページ | PSO2 Search Unofficial Item Search Engine",
+});
 </script>
 
 <template>

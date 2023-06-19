@@ -12,7 +12,7 @@ const {
 } = process.env;
 
 export default defineNuxtConfig({
-  ssr: false,
+  // ssr: false,
   modules: ["nuxt-icons", "@nuxtjs/fontaine"],
   typescript: {
     strict: true,
@@ -62,6 +62,7 @@ export default defineNuxtConfig({
       title: "PSO2 Search",
       htmlAttrs: {
         lang: "ja",
+        prefix: "og: http://ogp.me/ns#",
       },
       link: [
         {
@@ -95,6 +96,18 @@ export default defineNuxtConfig({
           name: "theme-color",
           content: "#ffffff",
         },
+        {
+          property: "og:type",
+          content: "website",
+        },
+        {
+          property: "og:site_name",
+          content: "PSO2 Search",
+        },
+        {
+          property: "og:image",
+          content: "/images/ogp.webp",
+        }
       ],
     },
   },
