@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { mdiImage } from "@mdi/js";
-import { fabric } from "fabric";
 
 const required = (v: File) => !!v || "アイテム画像は必須です";
 const limitSize = (v: any) => {
@@ -12,47 +11,37 @@ const limitSize = (v: any) => {
 
 const images = useState<File[]>("preview-images", () => []);
 const previewUrl = useState<string>("preview-url", () => "");
-const preview = () => {
-  if (!images.value.length) {
-    previewUrl.value = "";
-    return;
-  }
+
+const changeImage = () => {
+  const file = images.value[0];
+  if (!file) return;
   const reader = new FileReader();
-  reader.onload = function (event) {
-    const imageElement = new Image();
-    imageElement.onload = function () {
-      const canvas = new fabric.Canvas(document.createElement("canvas"), {
-        width: 320,
-        height: 320,
-      });
+  reader.onload = (event) => {
+    const img = new Image();
+    img.onload = () => {
+      const canvas = document.createElement("canvas");
+      const ctx = canvas.getContext("2d")!;
 
-      const imageInstance = new fabric.Image(imageElement, {
-        left: 0,
-        top: 0,
-      });
+      canvas.width = 320;
+      canvas.height = 320;
 
-      canvas.add(imageInstance.scaleToHeight(320));
-      canvas.add(imageInstance.scaleToWidth(320));
+      ctx.drawImage(img, 0, 0, 320, 320);
+      ctx.font = "20px Roboto";
 
-      const text = new fabric.Text("© SEGA", {
-        left: 12,
-        top: 12,
-        fontSize: 20,
-        fill: "black",
-        stroke: "white",
-        strokeWidth: 1,
-      });
+      // テキストの縁取り（ストローク）の設定
+      ctx.strokeStyle = "white";
+      ctx.lineWidth = 1;
+      ctx.strokeText("©SEGA", 12, 32);
 
-      canvas.add(text);
-      canvas.renderAll();
+      // テキストの塗りつぶし（フィル）の設定
+      ctx.fillStyle = "black";
+      ctx.fillText("©SEGA", 12, 32);
 
-      const dataURL = canvas.toDataURL({ format: "png" });
-
-      previewUrl.value = dataURL;
+      previewUrl.value = canvas.toDataURL();
     };
-    imageElement.src = event.target?.result as string;
+    img.src = event.target?.result as string;
   };
-  reader.readAsDataURL(images.value[0]);
+  reader.readAsDataURL(file);
 };
 </script>
 
@@ -68,7 +57,7 @@ const preview = () => {
       label="アイテムの画像"
       variant="outlined"
       density="compact"
-      @update:model-value="preview"
+      @update:model-value="changeImage"
     />
   </v-col>
   <v-col align="center" cols="12" md="6">
