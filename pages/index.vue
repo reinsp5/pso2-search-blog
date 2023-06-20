@@ -1,10 +1,11 @@
 <script lang="ts" setup>
 import { mdiMagnify } from "@mdi/js";
 import { Item } from "~/types/item";
+import { useStorage } from "@vueuse/core";
 
 const keyword = ref("");
 const searchResults = useState<Item[]>("search-result", () => []);
-const darkMode = useState("dark-mode");
+const darkMode = useStorage("dark-mode", false);
 const config = useRuntimeConfig();
 
 const isCompositioning = ref(false);
@@ -48,8 +49,14 @@ const search = async () => {
 useHead({
   title: "ホーム | PSO2 Search Unofficial Item Search Engine",
   meta: [
-    { property: "og:title", content: "ホーム | PSO2 Search Unofficial Item Search Engine" },
-    { property: "og:description", content: "PSO2およびPSO2NGSのアイテム検索エンジンです。" },
+    {
+      property: "og:title",
+      content: "ホーム | PSO2 Search Unofficial Item Search Engine",
+    },
+    {
+      property: "og:description",
+      content: "PSO2およびPSO2NGSのアイテム検索エンジンです。",
+    },
   ],
 });
 </script>

@@ -11,9 +11,13 @@ import {
 } from "@mdi/js";
 import { useTheme } from "vuetify";
 import { MAIN_THEME, MAIN_DARK_THEME } from "@/helpers/themes";
+import { useStorage } from "@vueuse/core";
 const drawer = ref(false);
-const darkMode = useState("dark-mode", () => false);
+const darkMode = useStorage("dark-mode", false);
 const theme = useTheme();
+onMounted(() => {
+  changeTheme();
+});
 const changeTheme = () => {
   theme.global.name.value = darkMode.value ? MAIN_DARK_THEME : MAIN_THEME;
 };
@@ -27,9 +31,7 @@ const currentPath = computed(
 );
 
 useHead({
-  meta: [
-    { property: 'og:url', content: currentPath }
-  ],
+  meta: [{ property: "og:url", content: currentPath }],
 });
 </script>
 

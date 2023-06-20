@@ -1,13 +1,14 @@
 <script lang="ts" setup>
 import { mdiMagnify } from "@mdi/js";
 import { Item } from "~/types/item";
+import { useStorage } from "@vueuse/core";
 
 const keyword = ref("");
 const searchResults = useState<Item[]>("search-result", () => []);
 
 const config = useRuntimeConfig();
 
-const darkMode = useState("dark-mode");
+const darkMode = useStorage("dark-mode", false);
 const isCompositioning = ref(false);
 
 // IME入力開始
@@ -45,7 +46,10 @@ const search = async () => {
 useHead({
   title: "検索ページ | PSO2 Search Unofficial Item Search Engine",
   meta: [
-    { property: "og:title", content: "検索ページ | PSO2 Search Unofficial Item Search Engine" },
+    {
+      property: "og:title",
+      content: "検索ページ | PSO2 Search Unofficial Item Search Engine",
+    },
     { property: "og:description", content: "PSO2 Searchの検索フォームです。" },
   ],
 });
@@ -55,12 +59,18 @@ useHead({
   <v-container fluid>
     <v-row>
       <v-col align="start" class="py-0" cols="12">
-        <v-img class="mr-auto ml-0 text-start" v-if="!darkMode" height="48" src="/images/logo.svg" inline />
+        <v-img
+          class="mr-auto ml-0 text-start"
+          v-if="!darkMode"
+          height="48"
+          src="/images/logo.svg"
+          inline
+        />
         <v-img v-else height="48" src="/images/logo_dark.svg" inline />
       </v-col>
       <v-col cols="12" sm="10" md="8" lg="7" xl="5">
         <v-text-field
-        color="primary"
+          color="primary"
           :prepend-inner-icon="mdiMagnify"
           v-model="keyword"
           variant="outlined"
@@ -71,9 +81,9 @@ useHead({
         />
       </v-col>
     </v-row>
-    <v-row justify="center" justify-sm="start" >
+    <v-row justify="center" justify-sm="start">
       <v-col v-for="item in searchResults" :key="item.id" cols="auto">
-        <SearchResultCard  :item="item" />
+        <SearchResultCard :item="item" />
       </v-col>
     </v-row>
   </v-container>

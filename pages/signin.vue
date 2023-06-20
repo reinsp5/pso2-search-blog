@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-const darkMode = useState("dark-mode");
+import { useStorage } from '@vueuse/core'
+const darkMode = useStorage("dark-mode", false);
 
 useHead({
   title: "ログイン | PSO2 Search Unofficial Item Search Engine",

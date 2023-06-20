@@ -13,7 +13,7 @@ const {
 
 export default defineNuxtConfig({
   ssr: false,
-  modules: ["nuxt-icons", "@nuxtjs/fontaine"],
+  modules: ["nuxt-icons", "@nuxtjs/fontaine", "@vueuse/nuxt"],
   nitro: {
     preset: "cloudflare-pages",
   },
