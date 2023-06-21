@@ -1,10 +1,11 @@
 <script lang="ts" setup>
-useHead({
-  title: "利用規約 | PSO2 Search Unofficial Item Search Engine",
-  meta: [
-    { property: "og:title", content: "利用規約 | PSO2 Search Unofficial Item Search Engine" },
-    { property: "og:description", content: "PSO2 Searchにアイテム登録を行うためにアカウントを作成する際の利用規約です。" },
-  ],
+const pageTitle = "利用規約 | PSO2 Search Unofficial Item Search Engine";
+const pageDescription =
+  "PSO2 Searchにアイテム登録を行うためにアカウントを作成する際の利用規約です。";
+useSeoMeta({
+  title: pageTitle,
+  ogTitle: pageTitle,
+  ogDescription: pageDescription,
 });
 </script>
 
@@ -54,17 +55,13 @@ useHead({
 
         <v-row class="ma-8">
           <v-col>
-            <div class="text-h5 font-weight-bold">
-              第３条 ユーザーの役割
-            </div>
+            <div class="text-h5 font-weight-bold">第３条 ユーザーの役割</div>
             本サービスにおいて、ユーザーは以下の役割を担います。
             <ol>
               <li>
                 善意に基づき、無理のない範囲でPSO2またはPSO2NGSのアイテム情報を登録及び編集すること。
               </li>
-              <li>
-                登録済みの情報を可能な限り最新の状態に保つこと。
-              </li>
+              <li>登録済みの情報を可能な限り最新の状態に保つこと。</li>
             </ol>
           </v-col>
         </v-row>
@@ -202,7 +199,7 @@ useHead({
         <v-row class="ma-8">
           <v-col>
             <div class="text-h5 font-weight-bold mb-8">第１０条（退会）</div>
-            ユーザーは、当方の定める退会手続により、本サービスから退会できるものとします。<br>
+            ユーザーは、当方の定める退会手続により、本サービスから退会できるものとします。<br />
             ただし、退会した場合においても、登録したアイテム情報は削除されません。
           </v-col>
         </v-row>

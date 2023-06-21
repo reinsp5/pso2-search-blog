@@ -1,16 +1,9 @@
-import { getAuth } from "firebase/auth";
-
 export default defineNuxtRouteMiddleware(async () => {
   if (!process.server) {
-    const user = await new Promise((resolve) => {
-      const auth = getAuth();
-      const unsubscribe = auth.onAuthStateChanged((user) => {
-        unsubscribe();
-        resolve(user);
-      });
-    });
+    const { checkAuthState, isAuthed } = useAuth();
+    await checkAuthState();
 
-    if (!user) {
+    if (!isAuthed.value) {
       console.log("ログインしていません");
       return await navigateTo("/signin", { redirectCode: 302 });
     }

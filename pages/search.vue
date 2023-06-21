@@ -1,14 +1,19 @@
 <script lang="ts" setup>
 import { mdiMagnify } from "@mdi/js";
 import { Item } from "~/types/item";
-import { useStorage } from "@vueuse/core";
+
+const pageTitle = "検索 | PSO2 Search Unofficial Item Search Engine";
+const pageDescription = "PSO2およびPSO2NGSのアイテム検索エンジンです。";
+useSeoMeta({
+  title: pageTitle,
+  ogTitle: pageTitle,
+  ogDescription: pageDescription,
+});
 
 const keyword = ref("");
 const searchResults = useState<Item[]>("search-result", () => []);
 
-const config = useRuntimeConfig();
-
-const darkMode = useStorage("dark-mode", false);
+const { darkMode } = useAppTheme();
 const isCompositioning = ref(false);
 
 // IME入力開始
@@ -20,39 +25,16 @@ const compositionStart = () => {
 const compositionEnd = () => {
   isCompositioning.value = false;
 };
+
 const search = async () => {
   // IME入力中は検索しない
   if (isCompositioning.value) {
     return;
   }
-  const response = await fetch(
-    "https://search.reinsp5.com/indexes/pso2-items/search",
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${config.public.meilisearchApiKey}`,
-      },
-      body: JSON.stringify({
-        q: keyword.value,
-      }),
-    }
-  );
-  // 検索結果を保存
-  const json = await response.json();
-  searchResults.value = json.hits as Item[];
+  const { search, keyword: word } = useSearch();
+  word.value = keyword.value;
+  searchResults.value = await search();
 };
-
-useHead({
-  title: "検索ページ | PSO2 Search Unofficial Item Search Engine",
-  meta: [
-    {
-      property: "og:title",
-      content: "検索ページ | PSO2 Search Unofficial Item Search Engine",
-    },
-    { property: "og:description", content: "PSO2 Searchの検索フォームです。" },
-  ],
-});
 </script>
 
 <template>

@@ -1,9 +1,7 @@
 <script lang="ts" setup>
-import { getAuth } from "firebase/auth";
 import {
   collection,
   addDoc,
-  getFirestore,
   Timestamp,
   getDocs,
   query,
@@ -15,10 +13,17 @@ import {
 import type { VForm } from "vuetify/lib/components/index.mjs";
 import { v4 as uuidv4 } from "uuid";
 import { Item } from "~/types/item";
+import { useImageUpload } from "~/composables/useImageUpload";
+import { DirectUploadURLResponse } from "~/types/cloudflareResponse";
 
 // 認証必須
 definePageMeta({
   middleware: ["auth"],
+});
+
+// SEO情報
+useSeoMeta({
+  title: "アイテム情報登録 | PSO2 Search Unofficial Item Search Engine",
 });
 
 // 入力情報の共有State
@@ -46,35 +51,45 @@ const createItem = async () => {
   }
 
   // 画像アップロード用のURLを取得
-  const responseUploadUrl = await fetch("/api/get-upload-url", {
-    method: "POST",
-  });
-  const imageUploadURL = await responseUploadUrl.json();
+  const { getUploadUrl } = useImageUpload();
+  const uploadUrl = getUploadUrl();
+
+  // 画像アップロード用のURLが取得できなかったらエラー
+  if (!uploadUrl) {
+    loading.value = false;
+    return;
+  } else if (!uploadUrl.success) {
+    loading.value = false;
+    return;
+  }
 
   // 画像をアップロード
   const previewUrl = useState<string>("preview-url", () => "");
   const response = await fetch(previewUrl.value);
-  const blob = await response.blob();
+  const fileBlob = await response.blob();
   const formData = new FormData();
-  formData.append("file", blob);
-  const cloudflareResponse = await fetch(imageUploadURL.uploadURL, {
+  formData.append("file", fileBlob);
+  const { data } = useFetch<DirectUploadURLResponse>(uploadUrl.uploadURL, {
     method: "POST",
     body: formData,
   });
 
   // 画像のアップロードが失敗したらエラー
-  if (!cloudflareResponse.ok) {
+  if (!data) {
+    throw new Error("画像のアップロードに失敗しました。");
+  } else if (!data.value!.success) {
     throw new Error("画像のアップロードに失敗しました。");
   }
+
   // データベースに登録
-  const store = getFirestore();
+  const { $auth, $store } = useNuxtApp();
   try {
     // <<トランザクション開始>>
-    await runTransaction(store, async (transaction) => {
+    await runTransaction($store, async (transaction) => {
       // itemsコレクションを取得
       const querySnapshot = await getDocs(
         query(
-          collection(store, "items"),
+          collection($store, "items"),
           where("name", "==", itemInfo.value.name)
         )
       );
@@ -84,19 +99,19 @@ const createItem = async () => {
       }
 
       // ユーザ情報を取得
-      const user = getAuth().currentUser;
+      const user = $auth.currentUser;
       if (!user) {
         throw new Error("ユーザ情報が取得できませんでした。");
       } else if (!user.uid) {
         throw new Error("ユーザ情報が取得できませんでした。");
       }
-      const userDoc = await getDoc(doc(store, "users", user.uid));
+      const userDoc = await getDoc(doc($store, "users", user.uid));
       if (!userDoc.exists()) {
         throw new Error("ユーザ情報が取得できませんでした。");
       }
 
       // ドキュメントを追加
-      const docRef = await addDoc(collection(store, "items"), {
+      const docRef = await addDoc(collection($store, "items"), {
         ...itemInfo.value,
         id: uuidv4(),
         requirement: {
@@ -106,8 +121,8 @@ const createItem = async () => {
           ...itemInfo.value.attribute,
         },
         cover_image_url: {
-          id: imageUploadURL.id,
-          url: `https://imagedelivery.net/y6deFg4uWz5Imy5sDx3EYA/${imageUploadURL.id}/public`,
+          id: data.value?.result.id,
+          url: `https://imagedelivery.net/y6deFg4uWz5Imy5sDx3EYA/${data.value?.result.id}/public`,
         },
         create_user: userDoc.get("displayName") ?? "unknown",
         update_user: userDoc.get("displayName") ?? "unknown",
@@ -130,10 +145,6 @@ const createItem = async () => {
     loading.value = false;
   }
 };
-
-useHead({
-  title: "アイテム情報登録 | PSO2 Search Unofficial Item Search Engine",
-});
 </script>
 
 <template>

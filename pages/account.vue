@@ -6,8 +6,9 @@ definePageMeta({
   middleware: ["auth"],
 });
 
-const displayName = useState<string>("update-display-name", () => "");
-const email = useState<string>("update-email", () => "");
+useSeoMeta({
+  title: "アカウントページ | PSO2 Search Unofficial Item Search Engine",
+});
 
 // フォームバリデーションチェック
 const form = ref<VForm | null>(null);
@@ -21,14 +22,19 @@ const loading = ref(false);
 // ダイアログの表示
 const dialog = ref(false);
 
-const user = getAuth().currentUser;
-const { getUserDoc } = useAuth();
-const userDoc = await getUserDoc();
-const name = userDoc!.displayName;
-if (user) {
-  displayName.value = name ?? "";
-  email.value = user.email ?? "";
-}
+// ユーザ情報
+const displayName = ref();
+const email = ref();
+
+// クライアントサイドでのみ実行
+onMounted(async () => {
+  const { $auth } = useNuxtApp();
+  const { getUserDoc } = useAuth();
+  const userDoc = await getUserDoc();
+  const userName = userDoc!.displayName;
+  displayName.value = userName ?? "";
+  email.value = $auth.currentUser?.email ?? "";
+});
 
 // ユーザ情報の更新
 const updateUser = async () => {
@@ -54,10 +60,6 @@ const delUser = async () => {
 const openDialog = () => {
   dialog.value = true;
 };
-
-useHead({
-  title: "アカウントページ | PSO2 Search Unofficial Item Search Engine",
-});
 </script>
 
 <template>

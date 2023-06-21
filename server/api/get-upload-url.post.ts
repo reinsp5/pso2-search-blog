@@ -1,3 +1,5 @@
+import { AuthenticatedUploadURLResponse } from "../../types/cloudflareResponse";
+
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig();
   const formData = new FormData();
@@ -14,30 +16,36 @@ export default defineEventHandler(async (event) => {
         body: formData,
       }
     );
-    const cloudflareImages = await response.json();
-    if (cloudflareImages.success === false) {
-      // URL取得失敗
-      return createError({
+    const respJson = await response.json();
+
+    // URL取得失敗
+    if (respJson.success === false) {
+      return {
         statusCode: 400,
         statusMessage: JSON.stringify({
-          message: cloudflareImages.errors[0].message,
+          message: respJson.errors[0].message,
         }),
-      });
+        success: false,
+        id: "",
+        uploadURL: "",
+      } as AuthenticatedUploadURLResponse;
     }
-    // アップロード用ワンタイムURLを返す
+
+    // 正常終了
     return {
       statusCode: 200,
-      success: cloudflareImages.success,
-      id: cloudflareImages.result.id,
-      uploadURL: cloudflareImages.result.uploadURL,
-    };
+      success: respJson.success,
+      id: respJson.result.id,
+      uploadURL: respJson.result.uploadURL,
+    } as AuthenticatedUploadURLResponse;
   } catch (err: unknown) {
     // サーバーエラー
-    return createError({
+    return {
       statusCode: 500,
-      statusMessage: JSON.stringify({
-        message: err,
-      }),
-    });
+      statusMessage: JSON.stringify(err),
+      success: false,
+      id: "",
+      uploadURL: "",
+    } as AuthenticatedUploadURLResponse;
   }
 });

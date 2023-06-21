@@ -1,12 +1,14 @@
 <script lang="ts" setup>
-import { getAuth } from "firebase/auth";
 import { VForm } from "vuetify/lib/components/index.mjs";
 
 definePageMeta({
   middleware: ["auth"],
 });
 
-const displayName = ref("");
+// SEO情報
+useSeoMeta({
+  title: "初回ユーザ名変更 | PSO2 Search Unofficial Item Search Engine",
+});
 
 // フォームバリデーションチェック
 const form = ref<VForm | null>(null);
@@ -24,10 +26,14 @@ const dialog = ref(true);
 // ローディングの表示
 const loading = ref(false);
 
-const user = getAuth().currentUser;
-if (user) {
-  displayName.value = user.displayName ?? "";
-}
+// ユーザー名
+const displayName = ref("");
+
+// クライアントサイドでのみ実行
+onMounted(() => {
+  const { $auth } = useNuxtApp();
+  displayName.value = $auth.currentUser?.displayName ?? "";
+});
 
 // ユーザ情報の更新
 const updateUser = async () => {
@@ -45,10 +51,6 @@ const updateUser = async () => {
     navigateTo("/account", { replace: true });
   }, 1000);
 };
-
-useHead({
-  title: "初回ユーザ名変更 | PSO2 Search Unofficial Item Search Engine",
-});
 </script>
 
 <template>
@@ -118,7 +120,12 @@ useHead({
               </div>
             </v-col>
             <v-col>
-              <v-form ref="form" validate-on="input" class="mx-8" @submit.prevent="updateUser">
+              <v-form
+                ref="form"
+                validate-on="input"
+                class="mx-8"
+                @submit.prevent="updateUser"
+              >
                 <v-text-field
                   v-model="displayName"
                   :rules="[validateDisplayName]"

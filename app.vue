@@ -9,30 +9,42 @@ import {
   mdiAccount,
   mdiPlusBox,
 } from "@mdi/js";
-import { useTheme } from "vuetify";
-import { MAIN_THEME, MAIN_DARK_THEME } from "@/helpers/themes";
-import { useStorage } from "@vueuse/core";
-const drawer = ref(false);
-const darkMode = useStorage("dark-mode", false);
-const theme = useTheme();
-onMounted(() => {
-  changeTheme();
-});
-const changeTheme = () => {
-  theme.global.name.value = darkMode.value ? MAIN_DARK_THEME : MAIN_THEME;
-};
-
-const { checkAuthState, isAuthed } = useAuth();
-await checkAuthState();
 
 const router = useRouter();
 const currentPath = computed(
   () => `https://pso2-search.com${router.currentRoute.value.path}`
 );
-
-useHead({
-  meta: [{ property: "og:url", content: currentPath }],
+useSeoMeta({
+  ogUrl: currentPath,
 });
+
+// テーマ切り替え
+const { switchTheme } = useAppTheme();
+
+// ナビゲーションドロワーの開閉
+const drawer = ref(false);
+
+// ダークモード
+const darkMode = ref(false);
+
+// 認証状況
+const isAuthed = ref(false);
+
+// クライアントサイドのみ実行
+onMounted(async () => {
+  // 認証状況を確認
+  const { checkAuthState, isAuthed: authed } = useAuth();
+  await checkAuthState();
+  isAuthed.value = authed.value;
+
+  // ダークモードを確認
+  switchTheme(darkMode.value);
+});
+
+// ダークモード切り替え
+const changeTheme = () => {
+  switchTheme(darkMode.value);
+};
 </script>
 
 <template>
