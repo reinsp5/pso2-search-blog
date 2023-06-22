@@ -1,6 +1,7 @@
 import { Timestamp } from "firebase/firestore";
+import { MeiliIndex } from "./meilisearch";
 
-interface IItem {
+export interface IItem {
   id: string;
   name: string;
   category: string;
@@ -91,8 +92,8 @@ export class Item implements IItem {
   color_variant: boolean = false;
   cover_image_url: ImageInfo = new ImageInfo();
   other_image_urls: ImageInfo[] = [];
-  
-  mapItem(item: Item) {
+
+  mapItem(item: Item | MeiliIndex) {
     return {
       id: item.id,
       name: item.name,

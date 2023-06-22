@@ -69,7 +69,7 @@ const createItem = async () => {
   const fileBlob = await response.blob();
   const formData = new FormData();
   formData.append("file", fileBlob);
-  const { data } = useFetch<DirectUploadUrlResponse>(uploadUrl.uploadURL, {
+  const { data } = await useFetch<DirectUploadUrlResponse>(uploadUrl.uploadURL, {
     method: "POST",
     body: formData,
   });
@@ -134,7 +134,6 @@ const createItem = async () => {
     // <<トランザクション終了>>
 
     // フォームをリセット
-    itemCreateForm.value.reset();
     itemInfo.value = new Item();
     previewUrl.value = "";
     images.value = [];

@@ -34,9 +34,12 @@ const search = async () => {
     return;
   }
 
-  const { search, keyword: word } = useSearch();
-  word.value = keyword.value;
-  searchResults.value = await search();
+  const { search, parms } = useSearch();
+  parms.value.q = keyword.value;
+  const response = await search();
+  searchResults.value = response!.hits.map((item) => {
+    return new Item().mapItem(item);
+  });
 
   // 検索結果が１件以上ある場合は、検索結果を表示するページへ遷移
   await navigateTo("/search");

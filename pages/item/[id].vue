@@ -10,21 +10,13 @@ const { isAuthed } = useAuth();
 const item = ref(new Item());
 const itemId = useRoute().params.id as string;
 const docUid = ref("");
-const response = await fetch(
-  "https://search.reinsp5.com/indexes/pso2-items/search",
-  {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${config.public.meilisearchApiKey}`,
-    },
-    body: JSON.stringify({
-      filter: `id = ${itemId}`,
-    }),
-  }
-);
-const json = await response.json();
-item.value = (json.hits[0] as Item) || new Item();
+const { search, parms } = useSearch();
+parms.value = {
+  filter: `id = ${itemId}`,
+};
+const response = await search();
+docUid.value = response!.hits[0]._firestore_id;
+item.value = new Item().mapItem(response!.hits[0]) || new Item();
 
 const stars = Array(item.value.rarity).fill("★");
 const getClass = (index: number) => {

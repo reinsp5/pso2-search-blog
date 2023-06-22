@@ -1,10 +1,8 @@
 import { MeiliResponse } from '~/types/meilisearch';
-import { Item } from './../types/item';
-
 
 export const useSearch = () => {
   const config = useRuntimeConfig();
-  const keyword = ref("");
+  const parms = ref<any>({});
   
   // 検索処理
   const search = async () => {
@@ -16,21 +14,14 @@ export const useSearch = () => {
           "Content-Type": "application/json",
           Authorization: `Bearer ${config.public.meilisearchApiKey}`,
         },
-        body: JSON.stringify({
-          q: keyword.value,
-        }),
+        body: {
+          ...parms.value,
+        },
       }
     );
 
-    // 検索結果がない場合は空配列を返す
-    if (!data) return [] as Item[];
-
-    const itemInfo = data.value!.hits.map((item) => {
-      return new Item().mapItem(item);
-    });
-    console.log(itemInfo);
-    return itemInfo;
+    return data.value;
   };
 
-  return { search, keyword };
+  return { search, parms };
 };

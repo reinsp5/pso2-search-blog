@@ -20,22 +20,13 @@ const docUid = ref("");
 
 // アイテム情報の取得
 const itemDoc = async () => {
-  const response = await fetch(
-    "https://search.reinsp5.com/indexes/pso2-items/search",
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${config.public.meilisearchApiKey}`,
-      },
-      body: JSON.stringify({
-        filter: `id = ${itemId}`,
-      }),
-    }
-  );
-  const json = await response.json();
-  docUid.value = json.hits[0]._firestore_id;
-  itemInfo.value = new Item().mapItem(json.hits[0]) || new Item();
+  const { search, parms } = useSearch();
+  parms.value = {
+    filter: `id = ${itemId}`,
+  };
+  const response = await search();
+  docUid.value = response!.hits[0]._firestore_id;
+  itemInfo.value = new Item().mapItem(response!.hits[0]) || new Item();
 };
 
 await itemDoc();
@@ -67,7 +58,7 @@ const createItem = async () => {
     await runTransaction($store, async (transaction) => {
       // 更新対象のドキュメントを取得する
       const sfDoc = await transaction.get(updateDocRef);
-      
+
       // 既に登録されている場合はエラー
       if (!sfDoc.exists()) {
         throw new Error("アイテムが存在しません！");

@@ -31,9 +31,12 @@ const search = async () => {
   if (isCompositioning.value) {
     return;
   }
-  const { search, keyword: word } = useSearch();
-  word.value = keyword.value;
-  searchResults.value = await search();
+  const { search, parms } = useSearch();
+  parms.value.q = keyword.value;
+  const response = await search();
+  searchResults.value = response!.hits.map((item) => {
+    return new Item().mapItem(item);
+  });
 };
 </script>
 
