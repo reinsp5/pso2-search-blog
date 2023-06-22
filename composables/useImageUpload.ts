@@ -1,4 +1,4 @@
-import { AuthenticatedUploadURLResponse } from "~/types/cloudflareResponse";
+import { AuthenticatedUploadURLResponse } from "~/types/cloudflare";
 
 export const useImageUpload = () => {
   const getUploadUrl = () => {

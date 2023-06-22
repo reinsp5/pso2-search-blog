@@ -1,4 +1,4 @@
-import { MeiliResponse } from '~/types/meiliresponse';
+import { MeiliResponse } from '~/types/meilisearch';
 import { Item, mapItem } from './../types/item';
 
 

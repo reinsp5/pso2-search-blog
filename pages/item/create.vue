@@ -14,7 +14,7 @@ import type { VForm } from "vuetify/lib/components/index.mjs";
 import { v4 as uuidv4 } from "uuid";
 import { Item } from "~/types/item";
 import { useImageUpload } from "~/composables/useImageUpload";
-import { DirectUploadURLResponse } from "~/types/cloudflareResponse";
+import { DirectUploadUrlResponse } from "~/types/cloudflare";
 
 // 認証必須
 definePageMeta({
@@ -69,7 +69,7 @@ const createItem = async () => {
   const fileBlob = await response.blob();
   const formData = new FormData();
   formData.append("file", fileBlob);
-  const { data } = useFetch<DirectUploadURLResponse>(uploadUrl.uploadURL, {
+  const { data } = useFetch<DirectUploadUrlResponse>(uploadUrl.uploadURL, {
     method: "POST",
     body: formData,
   });
@@ -109,21 +109,22 @@ const createItem = async () => {
       if (!userDoc.exists()) {
         throw new Error("ユーザ情報が取得できませんでした。");
       }
+      const uuid = uuidv4();
+
+      // DEBUG
+      console.debug({
+        ...itemInfo.value.toJSON(),
+        id: uuid,
+        create_user: userDoc.get("displayName") ?? "unknown",
+        update_user: userDoc.get("displayName") ?? "unknown",
+        created_at: Timestamp.now(),
+        updated_at: Timestamp.now(),
+      });
 
       // ドキュメントを追加
       const docRef = await addDoc(collection($store, "items"), {
-        ...itemInfo.value,
-        id: uuidv4(),
-        requirement: {
-          ...itemInfo.value.requirement,
-        },
-        attribute: {
-          ...itemInfo.value.attribute,
-        },
-        cover_image_url: {
-          id: data.value?.result.id,
-          url: `https://imagedelivery.net/y6deFg4uWz5Imy5sDx3EYA/${data.value?.result.id}/public`,
-        },
+        ...itemInfo.value.toJSON(),
+        id: uuid,
         create_user: userDoc.get("displayName") ?? "unknown",
         update_user: userDoc.get("displayName") ?? "unknown",
         created_at: Timestamp.now(),

@@ -12,7 +12,7 @@ const {
 } = process.env;
 
 export default defineNuxtConfig({
-  ssr: false,
+  // ssr: false,
   modules: ["nuxt-icons", "@nuxtjs/fontaine", "@vueuse/nuxt"],
   nitro: {
     preset: "cloudflare-pages",

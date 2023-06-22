@@ -1,4 +1,4 @@
-import { AuthenticatedUploadURLResponse } from "../../types/cloudflareResponse";
+import { AuthedUploadUrlResponse } from "../../types/cloudflare";
 
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig();
@@ -28,7 +28,7 @@ export default defineEventHandler(async (event) => {
         success: false,
         id: "",
         uploadURL: "",
-      } as AuthenticatedUploadURLResponse;
+      } as AuthedUploadUrlResponse;
     }
 
     // 正常終了
@@ -37,7 +37,7 @@ export default defineEventHandler(async (event) => {
       success: respJson.success,
       id: respJson.result.id,
       uploadURL: respJson.result.uploadURL,
-    } as AuthenticatedUploadURLResponse;
+    } as AuthedUploadUrlResponse;
   } catch (err: unknown) {
     // サーバーエラー
     return {
@@ -46,6 +46,6 @@ export default defineEventHandler(async (event) => {
       success: false,
       id: "",
       uploadURL: "",
-    } as AuthenticatedUploadURLResponse;
+    } as AuthedUploadUrlResponse;
   }
 });
