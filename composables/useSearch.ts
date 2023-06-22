@@ -1,5 +1,5 @@
 import { MeiliResponse } from '~/types/meilisearch';
-import { Item, mapItem } from './../types/item';
+import { Item } from './../types/item';
 
 
 export const useSearch = () => {
@@ -25,7 +25,9 @@ export const useSearch = () => {
     // 検索結果がない場合は空配列を返す
     if (!data) return [] as Item[];
 
-    const itemInfo = data.value!.hits.map((item: Item) => mapItem(item));
+    const itemInfo = data.value!.hits.map((item) => {
+      return new Item().mapItem(item);
+    });
     console.log(itemInfo);
     return itemInfo;
   };

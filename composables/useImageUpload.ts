@@ -1,8 +1,8 @@
-import { AuthenticatedUploadURLResponse } from "~/types/cloudflare";
+import { AuthedUploadUrlResponse } from "~/types/cloudflare";
 
 export const useImageUpload = () => {
   const getUploadUrl = () => {
-    const { data } = useFetch<AuthenticatedUploadURLResponse>("/api/get-upload-url", {
+    const { data } = useFetch<AuthedUploadUrlResponse>("/api/get-upload-url", {
       method: "POST",
     });
 
