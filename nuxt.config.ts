@@ -108,12 +108,24 @@ export default defineNuxtConfig({
           content: "@reinsp5",
         },
         {
+          name: "twitter:creator",
+          content: "@reinsp5"
+        },
+        {
           property: "og:type",
           content: "website",
         },
         {
           property: "og:site_name",
           content: "PSO2 Search",
+        },
+        {
+          proterty: "og:title",
+          content: "PSO2 Search"
+        },
+        {
+          proterty: "og:description",
+          content: "全アークスのための非公式アイテム検索エンジン"
         },
         {
           property: "og:image",
