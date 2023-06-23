@@ -23,10 +23,7 @@ export default defineNuxtConfig({
   },
   routeRules: {
     "/__/auth/**": {
-      proxy: { to: "https://pso2-items-database.firebaseapp.com" },
-    },
-    "/__/auth/handler": {
-      proxy: { to: "https://pso2-items-database.firebaseapp.com" },
+      proxy: { to: "https://pso2-items-database.firebaseapp.com/**" },
     },
   },
   build: {
