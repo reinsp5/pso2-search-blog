@@ -22,7 +22,7 @@ export default defineNuxtConfig({
     preset: "cloudflare-pages",
   },
   routeRules: {
-    "/__/auth/**": { proxy: "pso2-items-database.firebaseapp.com" },
+    "/__/auth/**": { proxy: "https://pso2-items-database.firebaseapp.com" },
   },
   build: {
     transpile: ["vuetify"],
