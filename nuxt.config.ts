@@ -36,6 +36,13 @@ export default defineNuxtConfig({
     define: {
       "process.env.DEBUG": false,
     },
+    server: {
+      proxy: {
+        "/__/auth/**": {
+          target: "https://pso2-items-database.firebaseapp.com",
+        },
+      },
+    },
   },
   css: ["@/assets/css/main.scss"],
   components: [
