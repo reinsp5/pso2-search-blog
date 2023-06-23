@@ -14,12 +14,15 @@ const {
 export default defineNuxtConfig({
   ssr: false,
   modules: ["nuxt-icons", "@nuxtjs/fontaine", "@vueuse/nuxt"],
-  nitro: {
-    preset: "cloudflare-pages",
-  },
   typescript: {
     strict: true,
     typeCheck: true,
+  },
+  nitro: {
+    preset: "cloudflare-pages",
+  },
+  routeRules: {
+    "/__/auth/**": { proxy: "pso2-items-database.firebaseapp.com" },
   },
   build: {
     transpile: ["vuetify"],
