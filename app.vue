@@ -19,13 +19,10 @@ useSeoMeta({
 });
 
 // テーマ切り替え
-const { switchTheme } = useAppTheme();
+const { switchTheme, darkMode } = useAppTheme();
 
 // ナビゲーションドロワーの開閉
 const drawer = ref(false);
-
-// ダークモード
-const darkMode = ref(false);
 
 // 認証状況
 const isAuthed = ref(false);
@@ -122,16 +119,6 @@ const changeTheme = () => {
           variant="text"
           class="mx-2"
           rounded="xl"
-          to="/item/create"
-          nav
-        >
-          アイテム登録
-        </v-btn>
-        <v-btn
-          color="secondary"
-          variant="text"
-          class="mx-2"
-          rounded="xl"
           to="/terms"
           nav
         >
@@ -148,7 +135,7 @@ const changeTheme = () => {
           プライバシーポリシー
         </v-btn>
         <v-col class="text-center mt-4" cols="12">
-          {{ new Date().getFullYear() }} — <strong>PSO2 Search</strong>
+          <strong>PSO2 Search</strong> {{ new Date().getFullYear() }}
         </v-col>
       </v-row>
     </v-footer>

@@ -6,6 +6,7 @@ import {
   updateEmail,
   onAuthStateChanged,
   signInWithRedirect,
+  signInWithPopup,
 } from "firebase/auth";
 import { setDoc, doc, deleteDoc, getDoc } from "firebase/firestore";
 
@@ -22,8 +23,35 @@ export const useAuth = () => {
   const signInGoogle = async () => {
     try {
       const { $auth } = useNuxtApp();
+      const { isIos } = useDevice();
       const provider = new GoogleAuthProvider();
-      await signInWithRedirect($auth, provider);
+      if (isIos) {
+        const { $store } = useNuxtApp();
+        const result = await signInWithPopup($auth, provider);
+        if (result?.user) {
+          // ユーザー情報がfirestoreに存在するか確認し、無ければ作成する。
+          const userDoc = await getDoc(doc($store, "users", result!.user.uid));
+          if (!userDoc.exists()) {
+            // ユーザー情報をfirestoreに保存
+            await setDoc(doc($store, "users", result!.user.uid), {
+              displayName: result!.user.displayName,
+            });
+            // 初回登録時はユーザー名変更画面へ遷移
+            return await navigateTo("/namechange", { replace: true });
+          }
+          // firestore上のユーザ情報で初回のユーザー名変更が完了しているか確認し、
+          // 完了していなければユーザー名変更画面へ遷移
+          if (!userDoc.data().firstDisplayNameChanged) {
+            // ユーザ名変更画面へ遷移
+            return await navigateTo("/namechange", { replace: true });
+          }
+
+          // それ以外はホーム画面へ遷移
+          return await navigateTo("/", { replace: true });
+        }
+      } else {
+        await signInWithRedirect($auth, provider);
+      }
     } catch (error: any) {
       console.error(error.message);
     }
@@ -33,8 +61,35 @@ export const useAuth = () => {
   const signInTwitter = async () => {
     try {
       const { $auth } = useNuxtApp();
+      const { isIos } = useDevice();
       const provider = new TwitterAuthProvider();
-      await signInWithRedirect($auth, provider);
+      if (isIos) {
+        const { $store } = useNuxtApp();
+        const result = await signInWithPopup($auth, provider);
+        if (result?.user) {
+          // ユーザー情報がfirestoreに存在するか確認し、無ければ作成する。
+          const userDoc = await getDoc(doc($store, "users", result!.user.uid));
+          if (!userDoc.exists()) {
+            // ユーザー情報をfirestoreに保存
+            await setDoc(doc($store, "users", result!.user.uid), {
+              displayName: result!.user.displayName,
+            });
+            // 初回登録時はユーザー名変更画面へ遷移
+            return await navigateTo("/namechange", { replace: true });
+          }
+          // firestore上のユーザ情報で初回のユーザー名変更が完了しているか確認し、
+          // 完了していなければユーザー名変更画面へ遷移
+          if (!userDoc.data().firstDisplayNameChanged) {
+            // ユーザ名変更画面へ遷移
+            return await navigateTo("/namechange", { replace: true });
+          }
+
+          // それ以外はホーム画面へ遷移
+          return await navigateTo("/", { replace: true });
+        }
+      } else {
+        await signInWithRedirect($auth, provider);
+      }
     } catch (error: any) {
       console.error(error.message);
     }

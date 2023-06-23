@@ -13,7 +13,7 @@ const {
 
 export default defineNuxtConfig({
   ssr: false,
-  modules: ["nuxt-icons", "@nuxtjs/fontaine", "@vueuse/nuxt"],
+  modules: ["nuxt-icons", "@nuxtjs/fontaine", "@vueuse/nuxt", "@nuxtjs/device"],
   typescript: {
     strict: true,
     typeCheck: true,
