@@ -1,8 +1,9 @@
 import vuetify from "vite-plugin-vuetify";
+import tailwindTypography from "@tailwindcss/typography";
 
 export default defineNuxtConfig({
   devtools: true,
-  modules: ["@nuxtjs/fontaine"],
+  modules: ["@nuxtjs/fontaine", "@nuxtjs/tailwindcss"],
   typescript: {
     strict: true,
     typeCheck: true,
@@ -27,6 +28,12 @@ export default defineNuxtConfig({
     },
   },
   css: ["@/assets/css/main.scss"],
+  tailwindcss: {
+    config: {
+      prefix: "tw-",
+      plugins: [tailwindTypography],
+    },
+  },
   components: [
     {
       path: "@/components",
@@ -37,7 +44,10 @@ export default defineNuxtConfig({
     viewTransition: true,
   },
   runtimeConfig: {
-    
+    newt: {
+      spaceUid: "",
+      cdnApiToken: "",
+    },
   },
   app: {
     head: {

@@ -11,6 +11,8 @@
   "devDependencies": {
     "@nuxt/devtools": "^0.6.3",
     "@nuxtjs/fontaine": "^0.4.0",
+    "@nuxtjs/tailwindcss": "^6.8.0",
+    "@tailwindcss/typography": "^0.5.9",
     "@types/node": "^18",
     "@vueuse/core": "^10.2.0",
     "@vueuse/nuxt": "^10.2.0",
@@ -21,6 +23,7 @@
     "vuetify": "^3.3.2"
   },
   "dependencies": {
-    "@mdi/js": "^7.2.96"
+    "@mdi/js": "^7.2.96",
+    "newt-client-js": "^3.2.4"
   }
 }

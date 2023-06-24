@@ -53,9 +53,7 @@ changeTheme();
         <v-icon color="primary" class="mr-4" :icon="mdiWeatherNight" />
       </template>
     </v-app-bar>
-    <v-navigation-drawer v-model="drawer" temporary>
-
-    </v-navigation-drawer>
+    <v-navigation-drawer v-model="drawer" temporary> </v-navigation-drawer>
     <v-main>
       <NuxtPage />
     </v-main>
