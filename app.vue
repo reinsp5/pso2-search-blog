@@ -18,10 +18,6 @@ useSeoMeta({
   ogUrl: currentPath,
 });
 
-// 認証状況を確認
-const { checkAuthState, isAuthed } = useAuth();
-await checkAuthState();
-
 // ナビゲーションドロワーの開閉
 const drawer = ref(false);
 
@@ -58,39 +54,7 @@ changeTheme();
       </template>
     </v-app-bar>
     <v-navigation-drawer v-model="drawer" temporary>
-      <ClientOnly>
-        <v-list nav>
-          <v-list-item :prepend-icon="mdiHome" title="ホーム" to="/" nuxt />
-          <v-list-item
-            v-if="!isAuthed"
-            :prepend-icon="mdiAccountPlus"
-            title="アカウント登録"
-            to="/signup"
-            nuxt
-          />
-          <v-list-item
-            v-if="!isAuthed"
-            :prepend-icon="mdiLogin"
-            title="ログイン"
-            to="/signin"
-            nuxt
-          />
-          <v-list-item
-            v-if="isAuthed"
-            :prepend-icon="mdiPlusBox"
-            title="アイテム登録"
-            to="/item/create"
-            nuxt
-          />
-          <v-list-item
-            v-if="isAuthed"
-            :prepend-icon="mdiAccount"
-            title="アカウント"
-            to="/account"
-            nuxt
-          />
-        </v-list>
-      </ClientOnly>
+
     </v-navigation-drawer>
     <v-main>
       <NuxtPage />

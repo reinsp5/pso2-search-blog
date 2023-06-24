@@ -1,18 +1,16 @@
 {
-  "name": "nuxt-app",
+  "name": "pso2-search-blog",
   "private": true,
   "scripts": {
-    "build": "nuxt build",
-    "dev": "nuxt dev",
-    "generate": "nuxt generate",
-    "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "build": "nuxi build",
+    "dev": "nuxi dev",
+    "generate": "nuxi generate",
+    "preview": "nuxi preview",
+    "postinstall": "nuxi prepare"
   },
   "devDependencies": {
     "@nuxt/devtools": "^0.6.3",
-    "@nuxtjs/device": "^3.1.0",
     "@nuxtjs/fontaine": "^0.4.0",
-    "@nuxtjs/google-fonts": "^3.0.1",
     "@types/node": "^18",
     "@vueuse/core": "^10.2.0",
     "@vueuse/nuxt": "^10.2.0",
@@ -23,10 +21,6 @@
     "vuetify": "^3.3.2"
   },
   "dependencies": {
-    "@mdi/js": "^7.2.96",
-    "@types/uuid": "^9.0.1",
-    "firebase": "^9.22.1",
-    "nuxt-icons": "^3.2.1",
-    "uuid": "^9.0.0"
+    "@mdi/js": "^7.2.96"
   }
 }
