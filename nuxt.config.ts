@@ -12,6 +12,7 @@ const {
 } = process.env;
 
 export default defineNuxtConfig({
+  devtools: true,
   ssr: false,
   modules: ["nuxt-icons", "@nuxtjs/fontaine", "@vueuse/nuxt", "@nuxtjs/device"],
   typescript: {

@@ -18,30 +18,23 @@ useSeoMeta({
   ogUrl: currentPath,
 });
 
-// テーマ切り替え
-const { switchTheme, darkMode } = useAppTheme();
+// 認証状況を確認
+const { checkAuthState, isAuthed } = useAuth();
+await checkAuthState();
 
 // ナビゲーションドロワーの開閉
 const drawer = ref(false);
 
-// 認証状況
-const isAuthed = ref(false);
-
-// クライアントサイドのみ実行
-onMounted(async () => {
-  // 認証状況を確認
-  const { checkAuthState, isAuthed: authed } = useAuth();
-  await checkAuthState();
-  isAuthed.value = authed.value;
-
-  // ダークモードを確認
-  switchTheme(darkMode.value);
-});
+// テーマ情報
+const { switchTheme, darkMode } = useAppTheme();
 
 // ダークモード切り替え
 const changeTheme = () => {
-  switchTheme(darkMode.value);
+  switchTheme();
 };
+
+// ダークモードを確認
+changeTheme();
 </script>
 
 <template>
