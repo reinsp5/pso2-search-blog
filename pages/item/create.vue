@@ -75,7 +75,7 @@ const createItem = async () => {
   });
 
   // 画像のアップロードが失敗したらエラー
-  if (!data) {
+  if (!data.value) {
     throw new Error("画像のアップロードに失敗しました。");
   } else if (!data.value!.success) {
     throw new Error("画像のアップロードに失敗しました。");
@@ -129,6 +129,10 @@ const createItem = async () => {
         update_user: userDoc.get("displayName") ?? "unknown",
         created_at: Timestamp.now(),
         updated_at: Timestamp.now(),
+        cover_image_url: {
+          id: data.value!.result.id,
+          url: `https://imagedelivery.net/y6deFg4uWz5Imy5sDx3EYA/${data.value!.result.id}/public`,
+        },
       });
     });
     // <<トランザクション終了>>
