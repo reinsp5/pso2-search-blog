@@ -45,8 +45,8 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     newt: {
-      spaceUid: "",
-      cdnApiToken: "",
+      spaceUid: process.env.NUXT_ENV_SPACE_UID || "pso2-search",
+      cdnApiToken: process.env.NUXT_ENV_CDN_API_TOKEN || "",
     },
   },
   app: {

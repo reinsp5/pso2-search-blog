@@ -69,26 +69,7 @@ changeTheme();
         >
           ホーム
         </v-btn>
-        <v-btn
-          color="secondary"
-          variant="text"
-          class="mx-2"
-          rounded="xl"
-          to="/terms"
-          nav
-        >
-          利用規約
-        </v-btn>
-        <v-btn
-          color="secondary"
-          variant="text"
-          class="mx-2"
-          rounded="xl"
-          to="/privacy"
-          nav
-        >
-          プライバシーポリシー
-        </v-btn>
+
         <v-col class="text-center mt-4" cols="12">
           <strong>PSO2 Search</strong> {{ new Date().getFullYear() }}
         </v-col>
