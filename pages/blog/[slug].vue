@@ -13,7 +13,7 @@ const { data } = await useAsyncData(`article-${slug}`, async () => {
     modelUid: "article",
     query: {
       slug,
-      select: ["_id", "title", "slug", "body"],
+      select: ["_id", "_sys", "title", "slug", "meta", "body", "category"],
     },
   });
 });
@@ -28,11 +28,11 @@ useSeoMeta({
 
 <template>
   <v-container>
-    <v-row>
+    <v-row no-gutters>
       <v-col cols="12">
-        <v-card variant="flat" class="tw-prose tw-prose-stone" >
+        <v-card variant="flat" class="tw-prose" >
           <v-card-title>
-            <h1>{{ article?.title }}</h1>
+            <h2>{{ article?.title }}</h2>
           </v-card-title>
           <v-card-text>
             <!-- eslint-disable-next-line vue/no-v-html -->

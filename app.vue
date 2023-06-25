@@ -39,19 +39,6 @@ changeTheme();
       <template v-slot:prepend>
         <v-app-bar-nav-icon color="primary" @click.stop="drawer = !drawer" />
       </template>
-
-      <template v-slot:append>
-        <v-icon color="primary" :icon="mdiWeatherSunny" />
-        <v-switch
-          v-model="darkMode"
-          class="mx-2"
-          color="success"
-          inset
-          hide-details
-          @change="changeTheme"
-        />
-        <v-icon color="primary" class="mr-4" :icon="mdiWeatherNight" />
-      </template>
     </v-app-bar>
     <v-navigation-drawer v-model="drawer" temporary> </v-navigation-drawer>
     <v-main>
