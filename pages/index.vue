@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import type { Article } from "@/types/article";
+
 // SEO情報
 const pageTitle = "ホーム | PSO2 Search Unofficial Item Search Engine";
 const pageDescription = "PSO2およびPSO2NGSのアイテム検索エンジンです。";
@@ -8,8 +10,6 @@ useSeoMeta({
   ogDescription: pageDescription,
 });
 const { darkMode } = useAppTheme();
-
-import type { Article } from "~/types/article";
 
 const { data } = await useAsyncData("articles", async () => {
   const { $newtClient } = useNuxtApp();
@@ -26,46 +26,48 @@ const articles = data.value?.items;
 
 <template>
   <v-container>
-    <v-row>
-      <v-col cols="12" v-for="article in articles" :key="article._id">
-        <v-row class="my-4">
-          <v-col align="center" cols="12" md="3">
-            <v-img
-              :src="article.meta.ogImage.src"
-              max-width="200"
-              max-height="200"
-              cover
-            />
-          </v-col>
-          <v-col>
-            <v-row no-gutters>
-              <v-col cols="12">
-                <span class="text-h6 text-md-h5">
-                  <NuxtLink :to="`/blog/${article.slug}`">
-                    {{ article.title }}
-                  </NuxtLink>
-                </span>
-              </v-col>
-              <v-col cols="12" class="text-caption">
-                {{
-                  `作成日：${new Date(
-                    article._sys.createdAt
-                  ).toLocaleDateString()}`
-                }}
-                　
-                {{
-                  `編集日：${new Date(
-                    article._sys.updatedAt
-                  ).toLocaleDateString()}`
-                }}
-              </v-col>
-              <v-col cols="12">
-                {{ article.meta.description }}
-              </v-col>
-            </v-row>
-          </v-col>
-        </v-row>
-        <v-divider />
+    <v-row justify="center">
+      <v-col cols="12" xxl="6" v-for="article in articles" :key="article._id">
+        <v-card variant="flat" :to="`/blog/${article.slug}`" v-ripple>
+          <v-row class="my-4">
+            <v-col align="center" cols="12" md="3">
+              <v-img
+                :src="article.meta.ogImage.src"
+                max-width="200"
+                max-height="200"
+                cover
+              />
+            </v-col>
+            <v-col>
+              <v-row no-gutters>
+                <v-col cols="12">
+                  <span class="text-h6 text-md-h5">
+                    <NuxtLink :to="`/blog/${article.slug}`">
+                      {{ article.title }}
+                    </NuxtLink>
+                  </span>
+                </v-col>
+                <v-col cols="12" class="text-caption">
+                  {{
+                    `作成日：${new Date(
+                      article._sys.createdAt
+                    ).toLocaleDateString()}`
+                  }}
+                  　
+                  {{
+                    `編集日：${new Date(
+                      article._sys.updatedAt
+                    ).toLocaleDateString()}`
+                  }}
+                </v-col>
+                <v-col class="pr-8 py-4" cols="12">
+                  {{ article.meta.description }}
+                </v-col>
+              </v-row>
+            </v-col>
+          </v-row>
+        </v-card>
+        <v-divider color="primary" />
       </v-col>
     </v-row>
   </v-container>

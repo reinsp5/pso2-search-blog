@@ -6,10 +6,10 @@ export const MAIN_THEME = "mainTheme";
 export const mainTheme: ThemeDefinition = {
   dark: false,
   colors: {
-    background: "#D3DCEA",
-    surface: "#D3DCEA",
-    primary: "#1C3251",
-    secondary: "#D3DCEA",
+    background: "#FFFFFF",
+    surface: "#FFFFFF",
+    primary: "#07101E",
+    secondary: "#FFFFFF",
     error: "#B72425",
     info: "#3093CC",
     success: "#118C5C",
@@ -25,7 +25,7 @@ export const mainDarkTheme: ThemeDefinition = {
   colors: {
     background: "#07101E",
     surface: "#07101E",
-    primary: "#D3DCEA",
+    primary: "#1C3251",
     secondary: "#07101E",
     error: "#B72425",
     info: "#3093CC",
