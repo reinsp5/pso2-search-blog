@@ -14,7 +14,7 @@ const { darkMode } = useAppTheme();
 const { data } = useMicroCMSGetList<Blog>({
   endpoint: "blogs",
 });
-console.log(data.value);
+
 </script>
 
 <template>
