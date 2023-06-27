@@ -47,7 +47,7 @@ const { data } = useMicroCMSGetList<Blog>({
                   {{ blog.publishedAt ?? blog.createdAt }}
                 </v-col>
                 <v-col class="pr-8 py-4" cols="12">
-                  {{ "" }}
+                  {{ blog.description }}
                 </v-col>
               </v-row>
             </v-col>
