@@ -3,13 +3,17 @@ import tailwindTypography from "@tailwindcss/typography";
 
 export default defineNuxtConfig({
   devtools: true,
-  modules: ["@nuxtjs/fontaine", "@nuxtjs/tailwindcss"],
+  modules: ["@nuxtjs/fontaine", "@nuxtjs/tailwindcss", "nuxt-microcms-module"],
   typescript: {
     strict: true,
     typeCheck: true,
   },
   nitro: {
     preset: "cloudflare-pages",
+  },
+  microCMS: {
+    serviceDomain: process.env.NUXT_MICROCMS_SERVICE_DOMAIN || "",
+    apiKey: process.env.NUXT_MICROCMS_API_KEY || "",
   },
   build: {
     transpile: ["vuetify"],

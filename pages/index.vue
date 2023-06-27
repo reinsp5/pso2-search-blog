@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { Article } from "@/types/article";
+import { Blog } from "types/blog";
 
 // SEO情報
 const pageTitle = "ホーム | PSO2 Search Unofficial Item Search Engine";
@@ -11,30 +11,26 @@ useSeoMeta({
 });
 const { darkMode } = useAppTheme();
 
-const { data } = await useAsyncData("articles", async () => {
-  const { $newtClient } = useNuxtApp();
-  return await $newtClient.getContents<Article>({
-    appUid: "blog",
-    modelUid: "article",
-    query: {
-      select: ["_id", "_sys", "title", "slug", "meta", "body", "category"],
-    },
-  });
+const { data } = useMicroCMSGetList<Blog>({
+  endpoint: "blogs",
 });
-const articles = data.value?.items;
+console.log(data.value);
 </script>
 
 <template>
   <v-container>
-    <v-row justify="center">
-      <v-col cols="12" xxl="6" v-for="article in articles" :key="article._id">
-        <v-card variant="flat" :to="`/blog/${article.slug}`" v-ripple>
+    <v-row justify="center" class="w-75 mx-auto">
+      <v-col cols="12" v-for="blog in data?.contents" :key="blog.id">
+        <v-card variant="flat" :to="`/blog/${blog.id}`" v-ripple>
           <v-row class="my-4">
             <v-col align="center" cols="12" md="3">
               <v-img
-                :src="article.meta.ogImage.src"
+                :src="blog.eyecatch?.url"
                 max-width="200"
                 max-height="200"
+                :width="blog.eyecatch?.width"
+                :height="blog.eyecatch?.height"
+                alt=""
                 cover
               />
             </v-col>
@@ -42,26 +38,16 @@ const articles = data.value?.items;
               <v-row no-gutters>
                 <v-col cols="12">
                   <span class="text-h6 text-md-h5">
-                    <NuxtLink :to="`/blog/${article.slug}`">
-                      {{ article.title }}
+                    <NuxtLink :to="`/blog/${blog.id}`">
+                      {{ blog.title }}
                     </NuxtLink>
                   </span>
                 </v-col>
                 <v-col cols="12" class="text-caption">
-                  {{
-                    `作成日：${new Date(
-                      article._sys.createdAt
-                    ).toLocaleDateString()}`
-                  }}
-                  　
-                  {{
-                    `編集日：${new Date(
-                      article._sys.updatedAt
-                    ).toLocaleDateString()}`
-                  }}
+                  {{ blog.publishedAt ?? blog.createdAt }}
                 </v-col>
                 <v-col class="pr-8 py-4" cols="12">
-                  {{ article.meta.description }}
+                  {{ "" }}
                 </v-col>
               </v-row>
             </v-col>

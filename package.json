@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "@mdi/js": "^7.2.96",
-    "newt-client-js": "^3.2.4"
+    "newt-client-js": "^3.2.4",
+    "nuxt-microcms-module": "^3.0.2"
   }
 }
