@@ -27,9 +27,9 @@ useSeoMeta({
             class="tw-prose tw-prose-2xl tw-mx-auto prose-img:tw-max-h-[480px] prose-img:tw-mx-auto prose-img:tw-w-full prose-img:tw-object-contain prose-img:tw-object-center"
           >
             <v-card-title>
-              <h2>{{ data.title }}</h2>
+              <h2 class="text-h6 text-md-h4 font-weight-bold">{{ data.title }}</h2>
             </v-card-title>
-            <v-card-text>
+            <v-card-text class="text-body-2 text-md-body-1">
               <!-- eslint-disable-next-line vue/no-v-html -->
               <div v-html="data.content" />
             </v-card-text>
@@ -41,4 +41,14 @@ useSeoMeta({
   </template>
 </template>
 
-<style scoped></style>
+<style>
+.v-card-title {
+  overflow-wrap: break-word;
+  white-space: normal;
+}
+
+td:first-child {
+  white-space: nowrap;
+  font-weight: bold;
+}
+</style>
